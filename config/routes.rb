@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :universities
   root 'static#home'
 
   resources :posts
