@@ -38,6 +38,9 @@ gem 'font-awesome-rails'
 # Material JS
 gem 'popper_js', '~> 1.12.9'
 
+# Devise
+gem 'devise'
+
 group :production do
   #Postgresql
   gem 'pg'
