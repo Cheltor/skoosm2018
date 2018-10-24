@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :rewards
   devise_for :users
   root 'static#home'
 
