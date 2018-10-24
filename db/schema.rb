@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181024161214) do
+ActiveRecord::Schema.define(version: 20181024165039) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20181024161214) do
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subject_id"
+    t.integer  "university_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["subject_id"], name: "index_courses_on_subject_id"
+    t.index ["university_id"], name: "index_courses_on_university_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
@@ -50,6 +60,12 @@ ActiveRecord::Schema.define(version: 20181024161214) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "business_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "universities", force: :cascade do |t|

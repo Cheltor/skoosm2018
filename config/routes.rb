@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :courses
+  resources :subjects
   devise_for :businesses
   resources :rewards
   devise_for :users
