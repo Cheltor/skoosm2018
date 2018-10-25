@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :course %><br />
+    <%= f.collection_select :course_id, Course.all, :id, :name_with_univ, class: "form-control" %>
+  </div>
+  
+  <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
