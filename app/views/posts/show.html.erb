@@ -15,5 +15,24 @@
   <%= @post.content %>
 </p>
 
+ <div class="section">
+  <div class="container container-comments">
+    <h3 class="title" style="text-align:center">Comments</h3>
+    <div class="row" style="">
+      <div class="col-md-8 ">
+          <div class="media-area">
+              <div class="media">
+                <div class="media-body">
+                  <%= render :partial => @post.comments %>
+                </div>
+              </div> 
+              <!--  Comment  -->
+            <%= render "comments/form" %>
+          </div> 
+      </div> <!-- end col-md-8 -->
+    </div>
+  </div>
+ </div>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
