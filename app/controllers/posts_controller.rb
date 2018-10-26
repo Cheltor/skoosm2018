@@ -63,6 +63,40 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  # Voting
+  def upvote
+    @post = Post.find(params[:id])
+    if current_user.voted_up_on? @post
+      redirect_to :back
+    elsif current_user.voted_down_on? @post
+      @post.upvote_by current_user
+      @post.user.increase_karma
+      @post.user.increase_karma
+      redirect_to :back      
+    else
+      @post.upvote_by current_user
+      @post.user.increase_karma
+      redirect_to :back
+    end
+  end
+  
+  def downvote
+    @post = Post.find(params[:id])
+    if current_user.voted_down_on? @post
+      redirect_to :back
+    elsif current_user.voted_up_on? @post
+      @post.downvote_by current_user
+      @post.user.decrease_karma
+      @post.user.decrease_karma
+      redirect_to :back
+    else
+      @post.downvote_by current_user
+      @post.user.decrease_karma
+      redirect_to :back
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

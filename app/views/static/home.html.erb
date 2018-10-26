@@ -36,10 +36,11 @@
     
     				<div class="col-md-10 col-md-offset-1">
     					<h2 class="title" style="text-align:center">Save time on classwork and earn rewards!</h2>
-					      <select id="e1">
-						      <option value="AL">Alabama</option>
-						      <option value="WY">Wyoming</option>
-						  </select>
+						<% if user_signed_in? %>
+						  <div style="text-align:center">
+						    <h3>You currently have <%= current_user.try(:karma) %> points.</h3>
+						  </div>
+						<% end %>
     					<br />
     
     					<div class="row">

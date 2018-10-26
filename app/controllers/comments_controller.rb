@@ -31,4 +31,39 @@ class CommentsController < ApplicationController
 	    format.json { head :no_content }
 	  end
 	end 
+	
+	
+	# Voting
+  def upvote
+  	@post = Post.find(params[:post_id])
+  	@comment = @post.comments.find(params[:id])
+    if current_user.voted_up_on? @comment
+      redirect_to :back
+    elsif current_user.voted_down_on? @comment
+      @comment.upvote_by current_user
+      @comment.user.increase_karma
+      @comment.user.increase_karma
+      redirect_to :back
+    else
+      @comment.upvote_by current_user
+      @comment.user.increase_karma
+      redirect_to :back
+    end
+  end
+  
+  def downvote
+    @comment = Comment.find(params[:id])
+    if current_user.voted_down_on? @comment
+      redirect_to :back
+    elsif current_user.voted_up_on? @comment
+      @comment.downvote_by current_user
+      @comment.user.decrease_karma
+      @comment.user.decrease_karma
+      redirect_to :back
+    else
+      @comment.downvote_by current_user
+      @comment.user.decrease_karma
+      redirect_to :back
+    end
+  end
 end

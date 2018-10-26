@@ -7,4 +7,13 @@ class User < ApplicationRecord
          
   has_many :posts
   has_many :comments
+  acts_as_voter
+  
+  def increase_karma(count=1)
+    update_attribute(:karma, karma + count)
+  end
+  
+  def decrease_karma(count=1)
+    update_attribute(:karma, karma - count)
+  end
 end

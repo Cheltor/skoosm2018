@@ -10,6 +10,19 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+  
+  resources :posts do
+    resources :comments do
+      member do
+        put "like",    to:"comments#upvote"
+        put "dislike", to:"comments#downvote"
+      end
+    end
+    member do
+      put "like",    to:"posts#upvote"
+      put "dislike", to:"posts#downvote"
+    end
+  end
   resources :universities
   
   # The priority is based upon order of creation: first created -> highest priority.
