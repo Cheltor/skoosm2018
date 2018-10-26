@@ -14,4 +14,6 @@
  *= require_self
  *= require font-awesome
  *= require material/material-kit.css
+ *= require select2
+ *= require select2-bootstrap
  */

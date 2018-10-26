@@ -23,4 +23,5 @@
 //= require material/bootstrap.min
 //= require material/material-kit
 //= require material/material.min
+//= require select2
 //= require_tree .

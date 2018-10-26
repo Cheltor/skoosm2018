@@ -41,6 +41,9 @@ gem 'popper_js', '~> 1.12.9'
 # Devise
 gem 'devise'
 
+# Select2
+gem "select2-rails"
+
 group :production do
   #Postgresql
   gem 'pg'

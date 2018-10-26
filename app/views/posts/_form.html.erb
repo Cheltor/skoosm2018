@@ -1,3 +1,9 @@
+<head>
+  <script>
+    $(document).ready(function() { $("#post_course_id").select2({theme: "bootstrap"}); });
+  </script>
+</head>
+
 <%= form_for(post) do |f| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
