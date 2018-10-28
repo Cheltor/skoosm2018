@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @search = Post.ransack(params[:q])
+    @posts = @search.result(distinct: true).includes(:comments)
   end
 
   # GET /posts/1
