@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'hides/hides'
-
-  get 'hides/hidden'
 
   resources :courses
   resources :subjects
@@ -11,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'static#home'
   
+  resources :flags
+  get 'flagged' => "flags#flagged"
+  get 'flag' => "flags#flags"
   resources :hides
   get 'hidden' => "hides#hidden"
   get 'hide' => "hides#hides"
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do
       put "like",    to:"posts#upvote"
       put "dislike", to:"posts#downvote"
+      post 'flag'
     end
   end
   resources :universities

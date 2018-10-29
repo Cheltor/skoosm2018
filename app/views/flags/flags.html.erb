@@ -1,0 +1,21 @@
+<h1>Listing Flags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Post Title</th>
+      <th>User</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flags.each do |flag| %>
+      <tr>
+        <td><%= flag.post.try(:title) %></td>
+        <td><%= flag.user.email %></td>
+        <td><%= link_to 'Unflag', flag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
