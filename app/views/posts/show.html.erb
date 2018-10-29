@@ -23,7 +23,7 @@
           <div class="media-area">
               <div class="media">
                 <div class="media-body">
-                  <%= render :partial => @post.comments %>
+                  <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
                 </div>
               </div> 
               <!--  Comment  -->

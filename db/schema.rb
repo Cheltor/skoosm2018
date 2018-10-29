@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181026144429) do
+ActiveRecord::Schema.define(version: 20181028202835) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20181026144429) do
     t.datetime "updated_at",    null: false
     t.index ["subject_id"], name: "index_courses_on_subject_id"
     t.index ["university_id"], name: "index_courses_on_university_id"
+  end
+
+  create_table "hides", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_hides_on_comment_id"
+    t.index ["user_id"], name: "index_hides_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|

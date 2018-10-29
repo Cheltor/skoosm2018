@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   acts_as_voter
+  has_many :hides
+  has_many :comments, :through => :hides
   
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)

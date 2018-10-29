@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   
+  get 'hides/hides'
+
+  get 'hides/hidden'
+
   resources :courses
   resources :subjects
   devise_for :businesses
   resources :rewards
   devise_for :users
   root 'static#home'
+  
+  resources :hides
+  get 'hidden' => "hides#hidden"
+  get 'hide' => "hides#hides"
 
   resources :posts do
     resources :comments
@@ -16,6 +24,7 @@ Rails.application.routes.draw do
       member do
         put "like",    to:"comments#upvote"
         put "dislike", to:"comments#downvote"
+        post 'hide'
       end
     end
     member do

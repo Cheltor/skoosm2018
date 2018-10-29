@@ -74,4 +74,21 @@ class CommentsController < ApplicationController
       end
     end
   end
+  
+  def hide
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @hide = @comment.hides.create(params.permit(:comment_id,:user_id))
+    @hide.user_id = current_user.id
+    
+      respond_to do |format|
+        if @hide.save
+          format.html { redirect_to @post, notice: 'Hide was successfully created.' }
+          format.json { render json: @hide, status: :created, location: @hide }
+        else
+          format.html { redirect_to @post}
+          format.json { render json: @hide.errors, status: :unprocessable_entity }
+        end
+      end
+  end
 end
