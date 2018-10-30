@@ -41,7 +41,25 @@
 						    <h3>You currently have <%= current_user.try(:karma) %> points.</h3>
 						  </div>
 						<% end %>
-    					<br />
+						
+						<% if @enrolls.blank? %>
+				            <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
+				            <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
+				          <% else %>
+				          <% @enrolls.each do |enroll| %>
+				            <div class="card container-fluid">
+				                <div class="header">
+				                    <h4 class="title"><%= enroll.course.try(:name) %></h4>
+				                    <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
+				                </div>
+				                <div class="content">
+				                    <%= enroll.course.posts.count %> posts
+				                    <%= enroll.course.enrolls.count %> enrolls
+				                </div>
+				            </div>
+				          <% end %>
+				          <% end %>
+    					<br/>
     
     					<div class="row">
     						<div class="col-md-4">

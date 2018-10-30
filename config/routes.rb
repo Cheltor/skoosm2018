@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  
-
-  resources :courses
+  resources :courses do
+    member do
+      post 'enroll'
+    end
+  end 
+  resources :enrolls
   resources :subjects
   devise_for :businesses
   resources :rewards

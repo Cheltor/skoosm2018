@@ -15,5 +15,28 @@
   <%= @course.university.name %>
 </p>
 
+    <div class="">
+      <% if user_signed_in? %>
+      <div style="text-align:center">
+        <% if @enrolls.blank? %>
+          <%= button_to 'Enroll', enroll_course_path(@course), method: :post, :class => 'btn btn-primary btn-round' %>
+        <% else %>
+          <%= link_to 'UnEnroll at Dashboard', root_path, :class => 'btn btn-round btn-danger' %>
+        <% end %>
+      </div>
+      <% end %>
+      <br>
+      <div style="text-align:center">
+        <% if @enrolls.nil? %>
+        <% else %>
+          <% if @enrolls.all.count != 1 %>
+          <p>There are <%= @enrolls.all.count %> users signed up for this class.</p>
+          <% else %>
+          <p>There is <%= @enrolls.all.count %> user signed up for this class.</p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

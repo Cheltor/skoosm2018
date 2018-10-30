@@ -13,6 +13,9 @@ class User < ApplicationRecord
   
   belongs_to :university, :required => true
   
+  has_many :enrolls
+  has_many :courses, :through => :enrolls
+  
   # Only emails ending in .edu can registar (to avoid spam and keep accountability)
   validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[e]+[d]+[u]\z/i
 
