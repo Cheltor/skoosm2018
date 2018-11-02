@@ -17,3 +17,5 @@
 
 <%= link_to 'Edit', edit_reward_path(@reward) %> |
 <%= link_to 'Back', rewards_path %>
+
+<%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>

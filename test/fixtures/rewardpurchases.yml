@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reward: one
+  user: one
+  rewardname: MyString
+  rewardbusiness: MyString
+  rewardcost: 1
+
+two:
+  reward: two
+  user: two
+  rewardname: MyString
+  rewardbusiness: MyString
+  rewardcost: 1

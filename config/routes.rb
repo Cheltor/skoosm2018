@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rewardpurchases/redeem'
+
+  get 'rewardpurchases/myrewards'
+
   resources :courses do
     member do
       post 'enroll'
@@ -7,7 +11,11 @@ Rails.application.routes.draw do
   resources :enrolls
   resources :subjects
   devise_for :businesses
-  resources :rewards
+  resources :rewards do
+    member do
+      post 'rewardpurchase'
+    end
+  end
   devise_for :users
   root 'static#home'
   
