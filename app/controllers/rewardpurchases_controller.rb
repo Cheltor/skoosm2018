@@ -1,4 +1,6 @@
 class RewardpurchasesController < ApplicationController
+  before_filter :authenticate_user!
+
   # POST /redeems
   # POST /redeems.json
   def redeem

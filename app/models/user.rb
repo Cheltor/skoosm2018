@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def decrease_karma(count=1)
     update_attribute(:karma, karma - count)
   end
+  
+  def purchase_reward(value) 
+    update_attribute(:karma, karma - value)
+  end
 end

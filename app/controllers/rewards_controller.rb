@@ -74,8 +74,10 @@ class RewardsController < ApplicationController
     @rewardpurchase.rewardcost = @reward.cost.to_s.dup
     @rewardpurchase.user_id = current_user.id
     
+    if current_user.karma >= @reward.cost
       respond_to do |format|
         if @rewardpurchase.save
+          current_user.purchase_reward(@reward.cost)
           format.html { redirect_to @reward, notice: 'Purchase was successfully created.' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
         else
@@ -83,6 +85,9 @@ class RewardsController < ApplicationController
           format.json { render json: @rewardpurchase.errors, status: :unprocessable_entity }
         end
       end
+    else
+      redirect_to :back, notice: "You do not have enough points to purchase this reward."
+    end
   end
 
   private
