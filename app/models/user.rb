@@ -17,7 +17,8 @@ class User < ApplicationRecord
   has_many :courses, :through => :enrolls
   
   has_many :rewardpurchases
-  
+  has_many :redeems
+
   # Only emails ending in .edu can registar (to avoid spam and keep accountability)
   validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[e]+[d]+[u]\z/i
 

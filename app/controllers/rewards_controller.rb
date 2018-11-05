@@ -1,7 +1,8 @@
 class RewardsController < ApplicationController
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_business!, :except => [:index, :show]
+  before_filter :authenticate_business!, :except => [:index, :show, :rewardpurchase]
   before_action :authorized_business, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:rewardpurchase]
   
   # GET /rewards
   # GET /rewards.json

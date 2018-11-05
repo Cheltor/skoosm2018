@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  get 'rewardpurchases/redeem'
+  resources :rewardpurchases do
+    member do
+      post 'redeem'
+    end
+  end
+  get 'valid' => 'static#valid'
 
-  get 'rewardpurchases/myrewards'
+  get 'myrewards' => 'rewardpurchases#myrewards'
+  get 'rewardpurchases/:id' => 'rewardpurchase#show'
+  
 
   resources :courses do
     member do

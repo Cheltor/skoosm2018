@@ -1,0 +1,29 @@
+<head>
+  <script>
+    $(document).ready(function() {
+        $("#fname").keyup(function() {
+            if (this.value ==   <%= @rewardpurchase.reward.business.code%>) {
+                $("#pete").css("display", "block");
+            }
+            else {
+                $("#pete").css("display", "none");
+            }
+        });
+    });
+  </script>
+</head>
+
+<p>
+  <strong>Title:</strong>
+  <%= @rewardpurchase.rewardname %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @rewardpurchase.reward.business.code%>
+</p>
+
+<p>Name: <input type="text" id="fname"></p>
+<div id="pete" style="display:none;" ><%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round' %></div>
+
+  

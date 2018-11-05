@@ -7,12 +7,14 @@
     <thead>
       <tr>
         <th style="text-align: center">Name</th>
+        <th style="text-align: center">Show</th>
       </tr>
     </thead>
     <tbody>
-      <% @rewardpurchases.each do |rewardpurchases| %>
+      <% @rewardpurchase.each do |rewardpurchase| %>
         <tr>
-          <td style="text-align: center"><%= rewardpurchases.rewardname %></td>
+          <td style="text-align: center"><%= rewardpurchase.rewardname %></td>
+          <td style="text-align: center"><%= link_to 'Show', rewardpurchase %></td>
         </tr>
       <% end %>
     </tbody>
