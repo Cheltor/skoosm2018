@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Charges</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  	<!--     Fonts and icons     -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+	<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" %>
+	
+
+</head>
+<body>
+
+<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+<%= link_to 'Sign In', new_user_session_path %>
+<%= link_to 'Sign Up', new_user_registration_path %>
+
+<% flash.each do |name, msg| %>
+<%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

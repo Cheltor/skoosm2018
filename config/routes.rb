@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :charges
+  
   resources :rewardpurchases do
     member do
       post 'redeem'

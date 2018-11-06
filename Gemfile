@@ -50,6 +50,12 @@ gem 'acts_as_votable', '~> 0.11.1'
 # Search
 gem 'ransack'
 
+# Stripe
+gem 'stripe'
+
+# API Key safety
+gem 'figaro'
+
 group :production do
   #Postgresql
   gem 'pg'
