@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   get 'valid' => 'static#valid'
+  get 'signup' => 'static#bizsignup'
 
   get 'myrewards' => 'rewardpurchases#myrewards'
   get 'rewardpurchases/:id' => 'rewardpurchase#show'

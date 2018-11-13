@@ -16,4 +16,9 @@ class StaticController < ApplicationController
       @posts = @search.result.includes(:comments)
     end
   end  
+  
+  def bizsignup
+    @monthly_plan = Plan.find(1)
+    @annually_plan = Plan.find(2)
+  end
 end

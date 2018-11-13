@@ -6,4 +6,5 @@ class Business < ApplicationRecord
          :trackable, :confirmable
          
   has_many :rewards
+  belongs_to :plan
 end
