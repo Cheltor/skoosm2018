@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   end 
   resources :enrolls
   resources :subjects
-  devise_for :businesses
+  devise_for :businesses, controllers: { registrations: 'businesses/registrations' }
+
   resources :rewards do
     member do
       post 'rewardpurchase'

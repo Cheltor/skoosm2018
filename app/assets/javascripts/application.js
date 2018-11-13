@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require businesses
 //= require material/jquery.dropdown
 //= require material/jquery.flexisel
 //= require material/jquery.min
