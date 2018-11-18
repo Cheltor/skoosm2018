@@ -32,6 +32,7 @@ $(document).on('turbolinks:load', function(){
       error = true;
       alert('The expiration date appears to be invalid');
     }
+    
     if (error) {
       //If there are card errors, don't send to Stripe.
       submitBtn.prop('disabled', false).val("Sign Up");
@@ -56,3 +57,4 @@ $(document).on('turbolinks:load', function(){
     theForm.get(0).submit();
   }
 });
+
