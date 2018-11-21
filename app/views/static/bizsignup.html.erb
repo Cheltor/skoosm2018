@@ -1,4 +1,28 @@
+<head>
+  <script>
+    $(document).ready(function() {
+        $("#fname").keyup(function() {
+            if (this.value ==   '1234') {
+                $("#pete").css("display", "block");
+            }
+            else {
+                $("#pete").css("display", "none");
+            }
+        });
+    });
+  </script>
+</head>
+
+
+
 <h1>Biz Signup</h1>
 <br>
 <%= link_to 'Sign Up', new_business_registration_path(plan: @monthly_plan.id) %>
 <%= link_to 'Sign Up', new_business_registration_path(plan: @annually_plan.id) %>
+
+<% if Business.all.where(plan_id: 3).count >= 10 %>
+<% else %>
+    <p>Name: <input type="text" id="fname"></p>
+    
+    <div id="pete" style="display:none;" ><%= link_to 'Sign Up', new_business_registration_path(plan: @free_plan.id) %></div>
+<% end %>

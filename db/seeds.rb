@@ -8,7 +8,7 @@
 
 Plan.create(name: 'monthly', price: 20)
 Plan.create(name: 'annually', price: 200)
+Plan.create(name: 'free', price: 0)
 University.create(name: 'University of Maryland, College Park')
 Subject.create(name: 'Calculus')
-
 

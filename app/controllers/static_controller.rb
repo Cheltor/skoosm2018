@@ -24,5 +24,6 @@ class StaticController < ApplicationController
   def bizsignup
     @monthly_plan = Plan.find(1)
     @annually_plan = Plan.find(2)
+    @free_plan = Plan.find(3)
   end
 end
