@@ -17,6 +17,10 @@ class StaticController < ApplicationController
     end
   end  
   
+  def businesses
+    @businesses = Business.all.order('deleted_at DESC')
+  end
+  
   def bizsignup
     @monthly_plan = Plan.find(1)
     @annually_plan = Plan.find(2)

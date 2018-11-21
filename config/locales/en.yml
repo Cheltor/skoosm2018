@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+
+en:  
+  devise:  
+    failure:  
+      deleted_account: "You've deleted your account. Thanks!"  

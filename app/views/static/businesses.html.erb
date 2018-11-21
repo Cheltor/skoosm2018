@@ -1,0 +1,22 @@
+<h1>Static#businesses</h1>
+<p>Find me in app/views/static/businesses.html.erb</p>
+
+<h1>Businesses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>email</th>
+      <th>deleted_at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @businesses.each do |business| %>
+      <tr>
+        <td><%= business.email %></td>
+        <td><%= business.deleted_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

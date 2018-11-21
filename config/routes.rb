@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'static/businesses'
+
   resources :charges
   
   resources :rewardpurchases do
