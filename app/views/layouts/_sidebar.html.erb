@@ -1,0 +1,57 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu">
+
+    <div class="slimscroll-menu">
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo text-center">
+            <span class="logo-lg">
+                <img src="assets/images/logo.png" alt="" height="16">
+            </span>
+            <span class="logo-sm">
+                <img src="assets/images/logo_sm.png" alt="" height="16">
+            </span>
+        </a>
+
+        <!--- Sidemenu -->
+        <ul class="metismenu side-nav">
+
+            <li class="side-nav-title side-nav-item">Navigation</li>
+
+            <li class="side-nav-item">
+                <%= link_to root_path, {:class=> "side-nav-link"} do %>Dashboard <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to posts_path, {:class=> "side-nav-link"} do %>Posts <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to courses_path, {:class=> "side-nav-link"} do %>Courses <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to rewards_path, {:class=> "side-nav-link"} do %>Rewards <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to posts_path, {:class=> "side-nav-link"} do %>My Posts <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to edit_user_registration_path, {:class=> "side-nav-link"} do %>My Account <% end %>
+            </li>
+            
+            <li class="side-nav-item">
+                <%= link_to myrewards_path, {:class=> "side-nav-link"} do %>My Rewards <% end %>
+            </li>
+        </ul>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

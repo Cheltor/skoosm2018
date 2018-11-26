@@ -14,15 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require businesses
-//= require material/jquery.dropdown
-//= require material/jquery.flexisel
-//= require material/jquery.min
-//= require material/jquery.tagsinput
-//= require material/jasny-bootstrap.min
-//= require material/nouislider.min
-//= require material/bootstrap-datepicker
-//= require material/bootstrap.min
-//= require material/material-kit
-//= require material/material.min
 //= require select2
 //= require_tree .
