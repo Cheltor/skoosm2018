@@ -5,10 +5,10 @@
 <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
   <div class="well container">
     <h2>Search:</h2>
-      <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Keywords', class: 'form-control' %>
+      <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Keywords' %>
       <br>
       <div class="container">
-      <%= f.submit "Search", class: "form-control" %>
+      <%= f.submit "Search" %>
     </div>
   </div>
 <% end %>

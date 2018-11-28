@@ -1,133 +1,145 @@
-  <% if user_signed_in? %>
-    <div class="row">
-        <div class="col-xl-6">
-          <h2 class="title">My Courses</h2>
-          <% if @enrolls.blank? %>
-          <div class="card">
-              <div class="card-body">
-                <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
-                <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
-              </div>
-          </div>
-          <% else %>
-              <% @enrolls.each do |enroll| %>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3><%= enroll.course.try(:name) %></h3>
-                                <p class="text-muted font-14 mb-4"><%= enroll.course.posts.count %> posts <%= enroll.course.enrolls.count %> enrolls</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="btn-group" style="padding-bottom:40px"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive-sm">
-                            <h4 class="header-title">Posts</h4>
-                            <table class="table table-hover table-centered mb-0">
-                                <thead>
-                                  <tr>
-                                    <th>Title</th>
-                                    <th>Post Karma</th>
-                                    <th>Time created</th>
-                                    <th colspan="1"></th>
-                                  </tr>
-                                </thead>
-                        
-                                <tbody>
-                                  <% enroll.course.posts.each do |post| %>
-                                    <tr>
-                                      <td><%= post.title %></td>
-                                      <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
-                                      <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
-                                      <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
-                                    </tr>
-                                  <% end %>
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
+<body class="about-us" style="margin:0; padding:0; color: #4d4d4d; position: relative; font-family: 'Roboto', sans-serif; text-align: left; background: url(../images/bg.png) left top repeat;}">
+    <div class="page-header" data-parallax="" style="padding-bottom:-100px">
+    	<div class="container">
+    		<div class="row">
+        		<div class="col-md-8 col-md-offset-2">
+                    <h1 class="title" style="color:#007981">Welcome to Skoosm!</h1>
                 </div>
-              <% end %>
-          <% end %>
-        </div>
-        <div class="col-xl-6">
-          <h2 class="title">My Posts</h2>
-
-            <% if @posts.blank? %>
-            <div class="card">
-                <div class="card-body">
-                    <h5 style= "text-align:center">You haven't made any posts yet.</h5>
-                    <p style= "text-align:center"><%= link_to 'New Post', new_post_path, class: "btn btn-primary btn-round btn-fill" %></p>
-                </div>
+                <div class="col-md-10 col-md-offset-1">
+					<div class="card card-raised card-form-horizontal">
+						<div class="content">
+							<form method="" action="">
+								<div class="row">
+									<div class="col-md-9">
+										<div class="form-group is-empty">
+					        	        	<input type="text" value="" placeholder="Search our posts" class="form-control">
+					                	<span class="material-input"></span></div>
+									</div>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-primary btn-block" style="background-color: #007981;">Search</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
             </div>
-            <% else %>
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive-sm">
-                      <table class="table table-hover table-centered mb-0">
-                    <thead>
-                      <tr>
-                        <th>Title</th>
-                        <th>Course</th>
-                        <th>Post Karma</th>
-                        <th>Time created</th>
-                        <th colspan="1"></th>
-                      </tr>
-                    </thead>
-        
-                    <tbody>
-                      <% @myposts.each do |post| %>
-                        <tr>
-                          <td><%= post.title %></td>
-                          <td><%= post.course.name %></td>
-                          <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
-                          <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
-                          <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-round' %></td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                    </div>
-                </div>
-            </div>
-          <% end %>
-          
-          <h2 class="title">My Comments</h2>
-          <% if @comments.blank? %>
-                <h5 style= "text-align:center">You haven't made any comments yet.</h5>
-              <% else %>
-              <div class="card">
-                  <div class="card-body">
-                      <div class="table-responsive-sm">
-                          <table class="table table-hover table-centered mb-0">
-                <thead>
-                  <tr>
-                    <th>Post</th>
-                    <th>Content</th>
-                    <th>Comment Karma</th>
-                    <th>Time created</th>
-                    <th colspan="1"></th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <% @mycomments.each do |comment| %>
-                    <tr>
-                      <td><%= comment.post.title %></td>
-                      <td><%= comment.content %></td>
-                      <td><%= comment.get_upvotes.size %> - <%= comment.get_downvotes.size %> = <%= comment.weighted_score %> </td>
-                      <td><%= time_ago_in_words(comment.created_at) + " ago" %></td>
-                      <td><%= link_to 'Show', comment.post, :class => 'btn btn-primary btn-round' %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-                      </div>
-                  </div>
-              </div>
-              <% end %>
         </div>
     </div>
-  <% end %>
+    <div class="main main-raised">
+    	<!--     *********     BLOGS 2      *********      -->
+
+    	<div class="blogs-2" id="blogs-2">
+    
+    		<div class="container">
+    			<div class="row">
+    
+    				<div class="col-md-10 col-md-offset-1">
+    					<h2 class="title" style="text-align:center">Save time on classwork and earn rewards!</h2>
+						<% if user_signed_in? %>
+						  <div style="text-align:center">
+						    <h3>You currently have <%= current_user.try(:karma) %> points.</h3>
+						  </div>
+						<% end %>
+						
+						<% if @enrolls.blank? %>
+				            <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
+				            <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
+				          <% else %>
+				          <% @enrolls.each do |enroll| %>
+				            <div class="card container-fluid">
+				                <div class="header">
+				                    <h4 class="title"><%= enroll.course.try(:name) %></h4>
+				                    <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
+				                </div>
+				                <div class="content">
+				                    <%= enroll.course.posts.count %> posts
+				                    <%= enroll.course.enrolls.count %> enrolls
+				                </div>
+				            </div>
+				          <% end %>
+				          <% end %>
+    					<br/>
+    
+    					<div class="row">
+    						<div class="col-md-4">
+    							<div class="card card-plain card-blog">
+    								<div class="card-image">
+    									<a href="#pablo">
+    										<img class="img img-raised" src="assets/img/examples/card-blog4.jpg" />
+    									</a>
+    								</div>
+    
+    								<div class="content" style="text-align: center">
+    									<h4 class="card-title">
+    										<a href="#pablo">Search through posts on Skoosm</a>
+    									</h4>
+    									<p class="card-description">
+											Join our community and share your resources and find the information that you're looking for fast.
+    									</p>
+    									<button class="btn btn-primary btn-round" style="background-color: #007981;">
+											<i class="material-icons">bookmark</i> Search posts
+										</button>
+    								</div>
+    							</div>
+    						</div>
+    
+    						<div class="col-md-4">
+    							<div class="card card-plain card-blog">
+    								<div class="card-image">
+    									<a href="#pablo">
+    										<img class="img img-raised" src="assets/img/examples/blog5.jpg" />
+    									</a>
+    								</div>
+    								<div class="content" style="text-align: center">
+    									<h4 class="card-title">
+    										<a href="#pablo">Find helpful posts for your class</a>
+    									</h4>
+    									<p class="card-description">
+    										Don't start from scratch, build on what previous students have found in those classes you're taking.
+    									</p>
+    									
+    									<button class="btn btn-primary btn-round" style="background-color: #007981;">
+											<i class="material-icons">assignment_turned_in</i> Search classes
+										</button>
+									</div>
+    							</div>
+    						</div>
+    
+    						<div class="col-md-4">
+    							<div class="card card-plain card-blog">
+    								<div class="card-image">
+    									<a href="#pablo">
+    										<img class="img img-raised" src="assets/img/examples/blog7.jpg" />
+    									</a>
+    								</div>
+    
+    								<div class="content" style="text-align: center">
+    									<h4 class="card-title">
+    										<a href="#pablo">Earn local business rewards</a>
+    									</h4>
+    									<p class="card-description">
+    										Local businesses provide discounts to students who provide the most useful information.
+    									</p>
+    									<button class="btn btn-primary btn-round" style="background-color: #007981">
+											<i class="material-icons">card_giftcard</i> Search rewards
+										</button>
+    								</div>
+    							</div>
+    						</div>
+    
+    
+    					</div>
+    
+    				</div>
+    
+    			</div>
+    
+    
+    
+    		</div>
+    	</div>
+    
+    	<!--     *********    END BLOGS 2      *********      -->
+    </div>
+</body>

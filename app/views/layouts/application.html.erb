@@ -8,100 +8,24 @@
   <%= tag :meta, :name => "stripe-key", :content => 'pk_test_kIdks93l4qXgf5iiwMdMZoDR' %>
   <%= csrf_meta_tags %>
   
-	<!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  
-  <meta charset="utf-8" />
-  <title>Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- App favicon -->
-  <link rel="shortcut icon" href="../assets/images/favicon.ico">
-
-  <!-- third party css -->
-  <link href="../assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-  <!-- third party css end -->
-
-  <!-- App css -->
-  <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-  <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
+  	<!--     Fonts and icons     -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+	<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" %>
+	
 
 </head>
 <body>
 
-    <!-- Begin page -->
-    <div class="wrapper">
+<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+<%= link_to 'Sign In', new_user_session_path %>
+<%= link_to 'Sign Up', new_user_registration_path %>
+<%= link_to 'Sign Up', signup_path %>
 
-        <!--  Sidebar  -->
-        <%= render "layouts/sidebar" %>
+<% flash.each do |name, msg| %>
+<%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
+<% end %>
 
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
+<%= yield %>
 
-        <div class="content-page">
-            <div class="content">
-
-    					<!-- Top Navbar -->
-    					<%= render "layouts/navbar" %>
-
-                
-                <!-- Start Content-->
-                <div class="container-fluid">
-                    <% flash.each do |name, msg| %>
-                    <%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
-                    <% end %>
-                    
-                    <%= yield %>
-
-                </div>
-                <!-- container -->
-
-            </div>
-            <!-- content -->
-
-            <!-- Footer Start -->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            2018 © Hyper - Coderthemes.com
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-right footer-links d-none d-md-block">
-                                <%= link_to 'Posts', posts_path %>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- end Footer -->
-
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-
-
-    </div>
-    <!-- END wrapper -->
-
-
-
-    <!-- bundle -->
-    <script src="../assets/js/app.min.js"></script>
-
-    <!-- third party js -->
-    <script src="../assets/js/vendor/Chart.bundle.min.js"></script>
-    <script src="../assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="../assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
-    <!-- third party js ends -->
-
-    <!-- demo app -->
-    <script src="../assets/js/pages/demo.dashboard.js"></script>
-    <!-- end demo js-->
 </body>
 </html>

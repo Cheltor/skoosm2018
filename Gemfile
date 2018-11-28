@@ -56,7 +56,6 @@ gem 'stripe'
 # API Key safety
 gem 'figaro'
 
-
 group :production do
   #Postgresql
   gem 'pg'
