@@ -12,17 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require businesses
-//= require material/jquery.dropdown
-//= require material/jquery.flexisel
 //= require material/jquery.min
-//= require material/jquery.tagsinput
-//= require material/jasny-bootstrap.min
-//= require material/nouislider.min
-//= require material/bootstrap-datepicker
 //= require material/bootstrap.min
-//= require material/material-kit
 //= require material/material.min
+//= require material/moment.min
+//= require material/nouislider.min
+//= require material/bootstrap-datetimepicker
+//= require material/bootstrap-selectpicker
+//= require material/bootstrap-tagsinput
+//= require material/jasny-bootstrap.min
+//= require material/material-kit
 //= require select2
 //= require_tree .

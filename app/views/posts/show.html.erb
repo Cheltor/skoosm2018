@@ -1,51 +1,76 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @post.url %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
- <div class="section">
-  <div class="container container-comments">
-    <h3 class="title" style="text-align:center">Comments</h3>
-    <div class="row" style="">
-      <div class="col-md-8 ">
-          <div class="media-area">
-              <div class="media">
-                <div class="media-body">
-                  <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
-                </div>
-              </div> 
-              <!--  Comment  -->
-            <%= render "comments/form" %>
-          </div> 
-      </div> <!-- end col-md-8 -->
+<div class="container">
+	<div class="row">
+	  <div class="col-sm-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col-sm-9">
+              <h2>
+                <%= @post.title %>
+              </h2>
+              <p>
+                <%= simple_format @post.content %>
+              </p>
+            </div>
+            <div class="col-sm-3">
+              <h4>
+                <strong>
+                  Poster:
+                </strong>
+                <%= @post.user.email %>
+              </h4>
+              <% if @post.url.blank? %>
+              <% else %>
+              <h4>
+                <strong>
+                  Link:
+                </strong>
+                <%= @post.url %>
+              </h4>
+              <p>
+              </p>
+              <% end %>
+              <h4>
+                <strong>
+                    Points:
+                </strong>
+                <%= @post.get_upvotes.size %> - <%= @post.get_downvotes.size %> = <%= @post.weighted_score %>
+              </h4>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <%= link_to like_post_path(@post), method: :put, class: "btn btn-info btn-sm" do %>
+                  <i class="material-icons">thumb_up</i>
+                <% end %>
+                <%= link_to dislike_post_path(@post), method: :put, class: "btn btn-warning btn-sm" do %>
+                  <i class="material-icons">thumb_down</i>
+                <% end %>
+              </div>
+              <%= link_to flag_post_path(@post), method: :post, class: 'btn btn-danger btn-sm' do %>
+                  <i class="material-icons">flag</i>
+              <% end %>
+              <% if @post.user == current_user %>
+                <%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-success btn-sm' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
- </div>
-
-<%= link_to 'Edit', edit_post_path(@post) %>
-<%= link_to 'Back', posts_path %>
-<%= link_to 'Flag', flag_post_path(@post), method: :post, :class => 'btn btn-round' %>
-
-
-  <div class="social-buttons">
-      <p style="text-align: center">Points: <%= @post.get_upvotes.size %> - <%= @post.get_downvotes.size %> = <%= @post.weighted_score %></p>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-content">
+          <h3 class="title">Comments</h3>
+          <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
+          <div class="row">
+            <div class="col-sm-8">
+              <!--  Comment  -->
+              <%= render "comments/form" %>
+           </div>
+         </div>
+      </div>
+    </div>
   </div>
-  
-<%= link_to like_post_path(@post), method: :put, class: "btn btn-default btn-sm" do %>
-  <span class="glyphicon glyphicon-chevron-up"></span>
-<% end %>
-<%= link_to dislike_post_path(@post), method: :put, class: "btn btn-default btn-sm" do %>
-  <span class="glyphicon glyphicon-chevron-down"></span>
-<% end %>
+</div>

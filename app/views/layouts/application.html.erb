@@ -2,30 +2,31 @@
 <html>
 <head>
   <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "https://js.stripe.com/v2/", type: 'text/javascript' %>
   <%= tag :meta, :name => "stripe-key", :content => 'pk_test_kIdks93l4qXgf5iiwMdMZoDR' %>
   <%= csrf_meta_tags %>
   
-  	<!--     Fonts and icons     -->
+  <!--     Fonts and icons     -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 	<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" %>
 	
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
+    
 </head>
 <body>
-
-<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<%= link_to 'Sign In', new_user_session_path %>
-<%= link_to 'Sign Up', new_user_registration_path %>
-<%= link_to 'Sign Up', signup_path %>
-
-<% flash.each do |name, msg| %>
-<%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
-<% end %>
-
-<%= yield %>
-
+  
+  <!-- Navbars -->
+  <!-- Not logged in -->
+  <!-- User logged in -->
+    
+        <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
+        <% end %>
+        
+        <%= yield %>
 </body>
 </html>

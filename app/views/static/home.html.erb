@@ -1,22 +1,62 @@
-<body class="about-us" style="margin:0; padding:0; color: #4d4d4d; position: relative; font-family: 'Roboto', sans-serif; text-align: left; background: url(../images/bg.png) left top repeat;}">
-    <div class="page-header" data-parallax="" style="padding-bottom:-100px">
+<div class="header-2">
+    <nav class="navbar navbar-transparent navbar-absolute">
     	<div class="container">
-    		<div class="row">
-        		<div class="col-md-8 col-md-offset-2">
-                    <h1 class="title" style="color:#007981">Welcome to Skoosm!</h1>
-                </div>
-                <div class="col-md-10 col-md-offset-1">
+        	<!-- Brand and toggle get grouped for better mobile display -->
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            		<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+        		</button>
+        		<a class="navbar-brand" href="/">Skoosm</a>
+        	</div>
+
+        	<div class="collapse navbar-collapse" id="navigation-example">
+                <ul class="nav navbar-nav navbar-center">
+	                <li>
+	                    <%= link_to 'Sign Up', new_user_registration_path %>     
+	                </li>
+	                <li>
+	                    <%= link_to 'Sign In', new_user_session_path %>
+	        		</li>
+                </ul>
+        		<ul class="nav navbar-nav navbar-right">
+		            <li>
+		                <a href="https://twitter.com/CreativeTim">
+							<i class="fa fa-twitter"></i>
+						</a>
+		            </li>
+		            <li>
+		                <a href="https://www.facebook.com/CreativeTim">
+							<i class="fa fa-facebook-square"></i>
+						</a>
+		            </li>
+        		</ul>
+        	</div>
+    	</div>
+    </nav>
+
+
+    <div class="page-header header-filter" style="background-image: url('assets/img/examples/office2.jpg');">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h1 class="title"> Your online study buddy!</h1>
+                    <h4>Stop wasting your time searching for things your classmates have already found. Search through our database for questions and resources posted by previous and current students. If you can't find what you are looking for leave a post!</h4>
+				</div>
+				<div class="col-md-8 col-md-offset-2">
 					<div class="card card-raised card-form-horizontal">
-						<div class="content">
+						<div class="card-content">
 							<form method="" action="">
 								<div class="row">
 									<div class="col-md-9">
-										<div class="form-group is-empty">
-					        	        	<input type="text" value="" placeholder="Search our posts" class="form-control">
+										<div class="form-group">
+					        	        	<input type="text" value="" placeholder="Keywords" class="form-control">
 					                	<span class="material-input"></span></div>
 									</div>
 									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-block" style="background-color: #007981;">Search</button>
+										<button type="button" class="btn btn-primary btn-block">Search</button>
 									</div>
 								</div>
 							</form>
@@ -25,121 +65,23 @@
 				</div>
             </div>
         </div>
-    </div>
-    <div class="main main-raised">
-    	<!--     *********     BLOGS 2      *********      -->
+		<footer class="footer">
+		    <div class="container">
+		        <nav class="pull-left">
+					<ul>
+		                <li>
+		                    <%= link_to 'Sign Up', signup_path %>     
+		                </li>
+		                <li>
+		                    <%= link_to 'Business Sign In', new_business_session_path %>
+		        		</li>
+					</ul>
+		        </nav>
+		        <div class="copyright pull-right">
+		            © <%= Time.current.year %> Skoosm</a>
+		        </div>
+		    </div>
+		</footer> 
+	</div>
+</div>
 
-    	<div class="blogs-2" id="blogs-2">
-    
-    		<div class="container">
-    			<div class="row">
-    
-    				<div class="col-md-10 col-md-offset-1">
-    					<h2 class="title" style="text-align:center">Save time on classwork and earn rewards!</h2>
-						<% if user_signed_in? %>
-						  <div style="text-align:center">
-						    <h3>You currently have <%= current_user.try(:karma) %> points.</h3>
-						  </div>
-						<% end %>
-						
-						<% if @enrolls.blank? %>
-				            <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
-				            <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
-				          <% else %>
-				          <% @enrolls.each do |enroll| %>
-				            <div class="card container-fluid">
-				                <div class="header">
-				                    <h4 class="title"><%= enroll.course.try(:name) %></h4>
-				                    <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
-				                </div>
-				                <div class="content">
-				                    <%= enroll.course.posts.count %> posts
-				                    <%= enroll.course.enrolls.count %> enrolls
-				                </div>
-				            </div>
-				          <% end %>
-				          <% end %>
-    					<br/>
-    
-    					<div class="row">
-    						<div class="col-md-4">
-    							<div class="card card-plain card-blog">
-    								<div class="card-image">
-    									<a href="#pablo">
-    										<img class="img img-raised" src="assets/img/examples/card-blog4.jpg" />
-    									</a>
-    								</div>
-    
-    								<div class="content" style="text-align: center">
-    									<h4 class="card-title">
-    										<a href="#pablo">Search through posts on Skoosm</a>
-    									</h4>
-    									<p class="card-description">
-											Join our community and share your resources and find the information that you're looking for fast.
-    									</p>
-    									<button class="btn btn-primary btn-round" style="background-color: #007981;">
-											<i class="material-icons">bookmark</i> Search posts
-										</button>
-    								</div>
-    							</div>
-    						</div>
-    
-    						<div class="col-md-4">
-    							<div class="card card-plain card-blog">
-    								<div class="card-image">
-    									<a href="#pablo">
-    										<img class="img img-raised" src="assets/img/examples/blog5.jpg" />
-    									</a>
-    								</div>
-    								<div class="content" style="text-align: center">
-    									<h4 class="card-title">
-    										<a href="#pablo">Find helpful posts for your class</a>
-    									</h4>
-    									<p class="card-description">
-    										Don't start from scratch, build on what previous students have found in those classes you're taking.
-    									</p>
-    									
-    									<button class="btn btn-primary btn-round" style="background-color: #007981;">
-											<i class="material-icons">assignment_turned_in</i> Search classes
-										</button>
-									</div>
-    							</div>
-    						</div>
-    
-    						<div class="col-md-4">
-    							<div class="card card-plain card-blog">
-    								<div class="card-image">
-    									<a href="#pablo">
-    										<img class="img img-raised" src="assets/img/examples/blog7.jpg" />
-    									</a>
-    								</div>
-    
-    								<div class="content" style="text-align: center">
-    									<h4 class="card-title">
-    										<a href="#pablo">Earn local business rewards</a>
-    									</h4>
-    									<p class="card-description">
-    										Local businesses provide discounts to students who provide the most useful information.
-    									</p>
-    									<button class="btn btn-primary btn-round" style="background-color: #007981">
-											<i class="material-icons">card_giftcard</i> Search rewards
-										</button>
-    								</div>
-    							</div>
-    						</div>
-    
-    
-    					</div>
-    
-    				</div>
-    
-    			</div>
-    
-    
-    
-    		</div>
-    	</div>
-    
-    	<!--     *********    END BLOGS 2      *********      -->
-    </div>
-</body>

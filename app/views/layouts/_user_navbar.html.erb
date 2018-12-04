@@ -1,0 +1,40 @@
+
+    <nav class="navbar navbar-primary" role="navigation">
+    	<div class="container-fluid">
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+        		</button>
+        		<%= link_to 'Skoosm', root_path, class:"navbar-brand" %>
+        	</div>
+    
+        	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        		<ul class="nav navbar-nav navbar-right">
+            		<li class="dropdown">
+            			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Posts <b class="caret"></b></a>
+            			<ul class="dropdown-menu">
+    					  <li><%= link_to 'Posts', posts_path %></li>
+    					  <li><%= link_to 'My Posts', posts_path %></li>
+            			</ul>
+            		</li>
+            		<li class="dropdown">
+            			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Rewards <b class="caret"></b></a>
+            			<ul class="dropdown-menu">
+    					  <li><%= link_to 'Browse Rewards', rewards_path %></li>
+    					  <li><%= link_to 'My Rewards', myrewards_path %></li>
+            			</ul>
+            		</li>
+                    <li class="dropdown">
+            			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+            			<ul class="dropdown-menu">
+    					  <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+    					  <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
+            			</ul>
+            		</li>
+        		</ul>
+        	</div>
+    	</div>
+    </nav>
