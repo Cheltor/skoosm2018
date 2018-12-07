@@ -1,111 +1,81 @@
 <body class="login-page">
-	<nav class="navbar navbar-transparent navbar-absolute">
-		<div class="container">
-	    	<!-- Brand and toggle get grouped for better mobile display -->
-	    	<div class="navbar-header">
-	    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-	        		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-	    		</button>
-	    		<a class="navbar-brand" href="/">Skoosm</a>
-	    	</div>
+
+	<div class="page-header header-filter" filter-color="black">
+	    <div class="page-header-image" style="background-image:url(../assets/img/login.jpg)"></div>
+	        <div class="content">
+	            <div class="container">
+	                <div class="col-md-5 ml-auto mr-auto">
+	            		<% flash.each do |name, msg| %>
+					    <%= content_tag(:div, msg, class: "alert alert-danger", style: "color: #fff; text-align:center") %>
+					    <% end %>
+					    <div class="card card-login card-plain">
+	                        <form class="form" method="" action="">
+	                            <div class="card-header text-center">
+	                                <!-- <div class="logo-container">
+	                                    <img src="../assets/img/now-logo.png" alt="">
+	                                </div>-->
+	                                <div>
+	                                	<h1>Student Login</h1>
+	                                </div>
+	                            </div>
+	                            <div class="card-body">
+	                              <div class="input-group no-border input-lg">
+	                                <div class="input-group-prepend">
+	                                  <span class="input-group-text">
+										<i class="material-icons">
+		                                email
+		                                </i>
+		                              </span>
+	                                </div>
+	                                <input type="text" class="form-control" placeholder="School Email">
+	                              </div>
+	                              <div class="input-group no-border input-lg">
+	                                <div class="input-group-prepend">
+	                                  <span class="input-group-text">
+		                                <i class="material-icons">
+		                                lock
+		                                </i>
+		                               </span>
+	                                </div>
+	                                <input type="text" class="form-control" placeholder="Password">
+	                              </div>
+	                            </div>
+	                            <div class="card-footer text-center">
+	                                <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Get Started</a>
+	                            </div>
+	                            <div class="pull-left">
+	                                <h6><a href="#pablo" class="link footer-link">Create Account</a></h6>
+	                            </div>
 	
-	    	<div class="collapse navbar-collapse" id="navigation-example">
-	            <ul class="nav navbar-nav navbar-center">
-	                <li>
-	                    <%= link_to 'Sign Up', new_user_registration_path %>     
-	                </li>
-	                <li>
-	                    <%= link_to 'Sign In', new_user_session_path %>
-	        		</li>
-	            </ul>
-	    		<ul class="nav navbar-nav navbar-right">
-		            <li>
-		                <a href="https://twitter.com/CreativeTim">
-							<i class="fa fa-twitter"></i>
-						</a>
-		            </li>
-		            <li>
-		                <a href="https://www.facebook.com/CreativeTim">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-		            </li>
-	    		</ul>
-	    	</div>
-		</div>
-	</nav>
-
-
-    <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg');">
-        <div class="container">
-            <div class="row">
-				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-					<div class="card card-signup">
-						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-							<div class="header header-primary text-center">
-								<h4 class="card-title">Student Log In</h4>
-							</div>
-							<div class="card-content">
-
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">email</i>
-									</span>
-    							<%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email..." %>
-								</div>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">lock_outline</i>
-									</span>
-									<%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"Password..." %>
-								</div>
-
-								<!-- If you want to add a checkbox to this form, uncomment this code -->
-
-								<div class="checkbox">
-									 <% if devise_mapping.rememberable? -%>
-									<label>
-										<%= f.check_box :remember_me, type:"checkbox", name:"optionsCheckboxes" %>
-										Remember me
-									</label>
-									<% end -%>
-								</div> 
-							</div>
-							<div class="footer text-center">
-								<%= f.submit "Log in", class:"btn btn-primary btn-simple btn-wd btn-lg" %>
-							</div>
-						<% end %>
-					</div>
-					<div class="card">
-						<div style="text-align:center">
-							<br>
-							<%= render "users/shared/links" %>
-							<br>
-						</div>
-					</div>
-				</div>
-            </div>
-        </div>
-		<footer class="footer">
-		    <div class="container">
-		        <nav class="pull-left">
-					<ul>
-		                <li>
-		                    <%= link_to 'Sign Up', signup_path %>     
-		                </li>
-		                <li>
-		                    <%= link_to 'Business Sign In', new_business_session_path %>
-		        		</li>
-					</ul>
-		        </nav>
-		        <div class="copyright pull-right sticky-bottom">
-		            © <%= Time.current.year %> Skoosm</a>
-		        </div>
-		    </div>
-		</footer> 
-	</div>
+	                            <div class="pull-right">
+	                                <h6><a href="#pablo" class="link footer-link">Need Help?</a></h6>
+	                            </div>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <footer class="footer">
+	    
+	  <div class="container">
+	    <nav>
+	      <ul>
+			<li>
+	            <%= link_to 'Business Sign Up', signup_path %>     
+	        </li>
+	        <li>
+	            <%= link_to 'Business Sign In', new_business_session_path %>
+			</li>
+	      </ul>
+	    </nav>
+	    <div class="copyright" id="copyright">
+			© <%= Time.current.year %> Skoosm</a>	
+	    </div>
+	  </div>    
+	
+	
+	</footer>
+	
+	    </div>	
 </body>
-

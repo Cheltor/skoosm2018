@@ -1,87 +1,79 @@
-<div class="header-2">
-    <nav class="navbar navbar-transparent navbar-absolute">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="/">Skoosm</a>
-        	</div>
-
-        	<div class="collapse navbar-collapse" id="navigation-example">
-                <ul class="nav navbar-nav navbar-center">
-	                <li>
-	                    <%= link_to 'Sign Up', new_user_registration_path %>     
-	                </li>
-	                <li>
-	                    <%= link_to 'Sign In', new_user_session_path %>
-	        		</li>
-                </ul>
-        		<ul class="nav navbar-nav navbar-right">
-		            <li>
-		                <a href="https://twitter.com/CreativeTim">
-							<i class="fa fa-twitter"></i>
-						</a>
-		            </li>
-		            <li>
-		                <a href="https://www.facebook.com/CreativeTim">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-		            </li>
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
-
-
-    <div class="page-header header-filter" style="background-image: url('assets/img/examples/office2.jpg');">
+<div class="wrapper">
+    <div class="page-header page-header-small">
+      <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg26.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
+      </div>
+      <div class="content-center">
+        <div class="container">
+	       	<% flash.each do |name, msg| %>
+		    <%= content_tag(:div, msg, class: "alert alert-danger", style: "color: #fff; text-align:center") %>
+		    <% end %>
+          <h1 class="title">Skoosm is your online study buddy.</h1>
+        </div>
+      </div>
+    </div>
+    <div class="features-4">
         <div class="container">
             <div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
-					<h1 class="title"> Your online study buddy!</h1>
-                    <h4>Stop wasting your time searching for things your classmates have already found. Search through our database for questions and resources posted by previous and current students. If you can't find what you are looking for leave a post!</h4>
-				</div>
-				<div class="col-md-8 col-md-offset-2">
-					<div class="card card-raised card-form-horizontal">
-						<div class="card-content">
-							<form method="" action="">
-								<div class="row">
-									<div class="col-md-9">
-										<div class="form-group">
-					        	        	<input type="text" value="" placeholder="Keywords" class="form-control">
-					                	<span class="material-input"></span></div>
-									</div>
-									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-block">Search</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Find the answers to your quesitons here</h2>
+                    <h4 class="description">Stop wasting your time searching for information that your classmates have already found. We collect all of the information previouslly found by current and former classmates.</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg24.jpg')">
+                        <div class="info">
+                            <div class="icon icon-white">
+                                <i class="material-icons">
+                                question_answer
+                                </i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Search posts</h4>
+                                <p>Find answers to questions already asked, answers found, and more.</p>
+                                <%= link_to 'All Posts', posts_path, class:"btn btn-round btn-simple" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg23.jpg')">
+                        <div class="info">
+                            <div class="icon icon-white">
+                                <i class="material-icons">
+                                account_balance
+                                </i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Search by class</h4>
+                                <p>Find the information associated with each of your classes.</p>
+                                <%= link_to 'All Classes', courses_path, class:"btn btn-round btn-simple" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg25.jpg')">
+                        <div class="info">
+                            <div class="icon icon-white">
+                                <i class="material-icons">
+                                redeem
+                                </i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Earn rewards for contributing</h4>
+                                <p>Earn points for submitting helpful posts or answering questions.</p>
+                                <%= link_to 'All Rewards', rewards_path, class:"btn btn-round btn-simple" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-		<footer class="footer">
-		    <div class="container">
-		        <nav class="pull-left">
-					<ul>
-		                <li>
-		                    <%= link_to 'Sign Up', signup_path %>     
-		                </li>
-		                <li>
-		                    <%= link_to 'Business Sign In', new_business_session_path %>
-		        		</li>
-					</ul>
-		        </nav>
-		        <div class="copyright pull-right">
-		            © <%= Time.current.year %> Skoosm</a>
-		        </div>
-		    </div>
-		</footer> 
-	</div>
+    </div>
 </div>
 
+<%= render "layouts/footer" %>

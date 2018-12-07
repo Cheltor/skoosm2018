@@ -18,15 +18,13 @@
     
 </head>
 <body>
-  
   <!-- Navbars -->
   <!-- Not logged in -->
+  <%= render "layouts/navbar"%>
   <!-- User logged in -->
-    
-        <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-#{name}", style: "color: #007981; text-align:center") %>
-        <% end %>
+  <!-- Business logged in -->
         
         <%= yield %>
+        
 </body>
 </html>

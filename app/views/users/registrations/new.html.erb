@@ -1,118 +1,123 @@
-<body class="login-page">
-	<nav class="navbar navbar-transparent navbar-absolute">
-		<div class="container">
-	    	<!-- Brand and toggle get grouped for better mobile display -->
-	    	<div class="navbar-header">
-	    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-	        		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-	    		</button>
-	    		<a class="navbar-brand" href="/">Skoosm</a>
-	    	</div>
+<body class="signup-page">
 	
-	    	<div class="collapse navbar-collapse" id="navigation-example">
-	            <ul class="nav navbar-nav navbar-center">
-	                <li>
-	                    <%= link_to 'Sign Up', new_user_registration_path %>     
-	                </li>
-	                <li>
-	                    <%= link_to 'Sign In', new_user_session_path %>
-	        		</li>
-	            </ul>
-	    		<ul class="nav navbar-nav navbar-right">
-		            <li>
-		                <a href="https://twitter.com/CreativeTim">
-							<i class="fa fa-twitter"></i>
-						</a>
-		            </li>
-		            <li>
-		                <a href="https://www.facebook.com/CreativeTim">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-		            </li>
-	    		</ul>
-	    	</div>
-		</div>
-	</nav>
+	<div class="page-header header-filter" filter-color="black">
+	    <div class="page-header-image" style="background-image:url(../assets/img/bg18.jpg)"></div>
+	    <div class="content">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-4 ml-auto mr-auto">
+	                    <div class="info info-horizontal">
+	                        <div class="icon icon-primary">
+								<i class="material-icons">
+	                                dashboard
+	                            </i>
+	                        </div>
+	                        <div class="description">
+	                            <h5 class="info-title">Dashboard</h5>
+	                            <p class="description">
+	                               Users have access to a dashboard showing all of their enrolled courses, posts associated with those courses.
+	                            </p>
+	                        </div>
+	                    </div>
+	
+	                    <div class="info info-horizontal">
+	                        <div class="icon icon-primary">
+								<i class="material-icons">
+	                                attach_money
+	                            </i>
+	                        </div>
+	                        <div class="description">
+	                            <h5 class="info-title">Earn rewards</h5>
+	                            <p class="description">
+	                                Helpful posts and comments will earn you rewards.
+	                            </p>
+	                        </div>
+	                    </div>
+	
+	                </div>
+	                <div class="col-md-4 mr-auto">
+		                            <h2 class="title">Student Signup</h2>
 
-
-    <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg');">
-        <div class="container">
-            <div class="row">
-				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-					<div class="card card-signup">
-						<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-							<div class="header header-primary text-center">
-								<h4 class="card-title">Student Sign Up</h4>
-							</div>
-							<div class="card-content">
-								<%= devise_error_messages! %>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">face</i>
-									</span>
-   									<%= f.collection_select :university_id, University.all, :id, :name, class: "form-control" %>
-								</div>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">email</i>
-									</span>
-   									<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-								</div>
-
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">lock_outline</i>
-									</span>
-								    <% if @minimum_password_length %>
-								    <em>(<%= @minimum_password_length %> characters minimum)</em>
-								    <% end %><br />
-								    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-							    </div>
-							    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">lock_outline</i>
-									</span>
-						    	    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-							    </div>
-
-								<!-- If you want to add a checkbox to this form, uncomment this code
-
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="optionsCheckboxes">
-										Terms and Conditions
-									</label>
-								</div>  -->
-							</div>
-							<div class="footer text-center">
-    							<%= f.submit "Sign up", class:"btn btn-primary btn-simple btn-wd btn-lg" %>
-							</div>
-						<% end %>
-					</div>
-				</div>
-            </div>
-        </div>
-		<footer class="footer">
-		    <div class="container">
-		        <nav class="pull-left">
-					<ul>
-		                <li>
-		                    <%= link_to 'Sign Up', signup_path %>     
-		                </li>
-		                <li>
-		                    <%= link_to 'Business Sign In', new_business_session_path %>
-		        		</li>
-					</ul>
-		        </nav>
-		        <div class="copyright pull-right sticky-bottom">
-		            © <%= Time.current.year %> Skoosm</a>
-		        </div>
+	                    <div class="card card-signup">
+	                        <div class="card-body">
+	
+								<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+									<div class="input-group">
+	   									<%= f.collection_select :university_id, University.all, :id, :name, {}, {:class=>'form-control'} %>
+									</div>
+	                                <div class="input-group">
+	                                  <div class="input-group-prepend">
+	                                    <span class="input-group-text">
+	                                    	<i class="material-icons">
+				                                email
+				                            </i>
+				                        </span>
+	                                  </div>
+	                                  <input type="text" class="form-control" placeholder="School email" autocomplete="fullname">
+	                                </div>
+	                                <div class="input-group">
+	                                  <div class="input-group-prepend">
+	                                    <span class="input-group-text">
+	                                     	<i class="material-icons">
+				                                lock
+				                            </i>
+				                        </span>
+	                                  </div>
+	                                  <input type="text" class="form-control" placeholder="Last Name..." autocomplete="name">
+	                                </div>
+	
+	                                <div class="input-group">
+	                                  <div class="input-group-prepend">
+	                                    <span class="input-group-text">
+	                                    	<i class="material-icons">
+				                                lock
+				                            </i>
+				                        </span>
+	                                  </div>
+	                                  <input type="text" class="form-control" placeholder="Your Email..." autocomplete="email">
+	                                </div>
+	
+	                                <!-- If you want to add a checkbox to this form, uncomment this code
+	
+	                                <div class="form-check">
+	                  								<label class="form-check-label">
+	                  									<input class="form-check-input" type="checkbox">
+	                  									<span class="form-check-sign"></span>
+	                  									I agree to the terms and <a href="#something">conditions</a>.
+	                  								</label>
+	                  							</div> -->
+	
+	                                <div class="card-footer text-center">
+	                                    <a href="#pablo" class="btn btn-primary btn-round btn-lg">Get Started</a>
+	                                </div>
+	                            <% end %>
+	                        </div>
+	                    </div>
+	                </div><div></div>
+	            </div>
+	        </div>
+	    </div>
+		        <footer class="footer">
+		    
+		  <div class="container">
+		    <nav>
+		      <ul>
+				<li>
+		            <%= link_to 'Business Sign Up', signup_path %>     
+		        </li>
+		        <li>
+		            <%= link_to 'Business Sign In', new_business_session_path %>
+				</li>
+		      </ul>
+		    </nav>
+		    <div class="copyright" id="copyright">
+				© <%= Time.current.year %> Skoosm</a>	
 		    </div>
-		</footer> 
-	</div>
+		  </div>    
+		
+		
+		</footer>
+	
+	</div>	
 </body>
+

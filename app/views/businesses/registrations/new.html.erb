@@ -1,17 +1,82 @@
-<% if params[:plan] == '2' %>
-  <h2>Annually Account Sign Up Form</h2>
-<% elsif params[:plan] == '1' %>
-  <h2>Monthly Account Sign Up Form</h2>
-<% else %>
-  <h2>Free Account Sign Up Form</h2>
-<% end %>
-
-<h2>Sign up</h2>
-
-<% if params[:plan] == '3' %>
-    <%= render "free_form" %>
-  <% else %>
-    <%= render "pro_form" %>
-<% end %>
-
-<%= render "businesses/shared/links" %>
+<body class="signup-page">
+	
+	<div class="page-header header-filter" filter-color="black">
+	    <div class="page-header-image" style="background-image:url(../assets/img/bg18.jpg)"></div>
+	    <div class="content">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-4 ml-auto mr-auto">
+	                    <div class="info info-horizontal">
+	                        <div class="icon icon-primary">
+								<i class="material-icons">
+	                                dashboard
+	                            </i>
+	                        </div>
+	                        <div class="description">
+	                            <h5 class="info-title">Advertising</h5>
+	                            <p class="description">
+                              Reach students directly 
+	                            </p>
+	                        </div>
+	                    </div>
+	
+	                    <div class="info info-horizontal">
+	                        <div class="icon icon-primary">
+								<i class="material-icons">
+	                                attach_money
+	                            </i>
+	                        </div>
+	                        <div class="description">
+	                            <h5 class="info-title">Service</h5>
+	                            <p class="description">
+                              The most helpful students earn the most points and your discounts will reward those students.
+	                            </p>
+	                        </div>
+	                    </div>
+	
+	                </div>
+	                <div class="col-md-4 mr-auto">
+                      <% if params[:plan] == '2' %>
+                        <h2>Annual Sign Up</h2>
+                      <% elsif params[:plan] == '1' %>
+                        <h2>Monthly Sign Up </h2>
+                      <% else %>
+                        <h2>Free Sign Up</h2>
+                      <% end %>
+	                    <div class="card card-signup">
+	                        <div class="card-body">
+                            <% if params[:plan] == '3' %>
+                                <%= render "free_form" %>
+                              <% else %>
+                                <%= render "pro_form" %>
+                            <% end %>
+                            <%= render "businesses/shared/links" %>
+	                        </div>
+	                    </div>
+	                </div><div></div>
+	            </div>
+	        </div>
+	    </div>
+		        <footer class="footer">
+		    
+		  <div class="container">
+		    <nav>
+		      <ul>
+				<li>
+		            <%= link_to 'Business Sign Up', signup_path %>     
+		        </li>
+		        <li>
+		            <%= link_to 'Business Sign In', new_business_session_path %>
+				</li>
+		      </ul>
+		    </nav>
+		    <div class="copyright" id="copyright">
+				© <%= Time.current.year %> Skoosm</a>	
+		    </div>
+		  </div>    
+		
+		
+		</footer>
+	
+	</div>	
+</body>
