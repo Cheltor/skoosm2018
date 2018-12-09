@@ -1,79 +1,81 @@
-<div class="wrapper">
-    <div class="page-header page-header-small">
-      <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg26.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
-      </div>
-      <div class="content-center">
-        <div class="container">
-	       	<% flash.each do |name, msg| %>
-		    <%= content_tag(:div, msg, class: "alert alert-danger", style: "color: #fff; text-align:center") %>
-		    <% end %>
-          <h1 class="title">Skoosm is your online study buddy.</h1>
+<% @title="Home" %>
+
+
+<div class="header-2">
+    <div class="page-header header-filter">
+      <div class="page-header-image" style="background-image: url('assets/img/bg11.jpg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h1 class="title">Find what you've been searching for</h1>
+            <h5 class="description">Take a look at what Stackoverflow has written and change it to something for Skoosm.</h5>
+          </div>
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+              <div class="card-body">
+    		    <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="form-group">
+    		        	 <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Keywords', class:"form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+     				  <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="features-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Find the answers to your quesitons here</h2>
-                    <h4 class="description">Stop wasting your time searching for information that your classmates have already found. We collect all of the information previouslly found by current and former classmates.</h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg24.jpg')">
-                        <div class="info">
-                            <div class="icon icon-white">
-                                <i class="material-icons">
-                                question_answer
-                                </i>
-                            </div>
-                            <div class="description">
-                                <h4 class="info-title">Search posts</h4>
-                                <p>Find answers to questions already asked, answers found, and more.</p>
-                                <%= link_to 'All Posts', posts_path, class:"btn btn-round btn-simple" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg23.jpg')">
-                        <div class="info">
-                            <div class="icon icon-white">
-                                <i class="material-icons">
-                                account_balance
-                                </i>
-                            </div>
-                            <div class="description">
-                                <h4 class="info-title">Search by class</h4>
-                                <p>Find the information associated with each of your classes.</p>
-                                <%= link_to 'All Classes', courses_path, class:"btn btn-round btn-simple" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-background card-raised" data-background-color="" style="background-image: url('assets/img/bg25.jpg')">
-                        <div class="info">
-                            <div class="icon icon-white">
-                                <i class="material-icons">
-                                redeem
-                                </i>
-                            </div>
-                            <div class="description">
-                                <h4 class="info-title">Earn rewards for contributing</h4>
-                                <p>Earn points for submitting helpful posts or answering questions.</p>
-                                <%= link_to 'All Rewards', rewards_path, class:"btn btn-round btn-simple" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
+<div class="features-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title">Simpler. Smarter. Faster.</h2>
+          <h4 class="description">Maybe Reddit has something that I can use here?</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info info-hover"><%= link_to posts_path do %>
+            <div class="icon icon-success icon-circle">
+              <i class="material-icons">
+                question_answer
+              </i>
+            </div><% end %>
+            <h4 class="info-title">Search Posts</h4>
+            <p class="description">Find answers to questions already asked, answers found, and more.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info info-hover"><%= link_to courses_path do %>
+            <div class="icon icon-info icon-circle">
+                <i class="material-icons">
+                account_balance
+                </i>
+            </div><% end %>
+            <h4 class="info-title">Search by class</h4>
+            <p class="description">Find the information associated with each of your classes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info info-hover"><%= link_to rewards_path do %>
+            <div class="icon icon-warning icon-circle">
+                <i class="material-icons">
+                redeem
+                </i>
+            </div><% end %>
+            <h4 class="info-title">Earn rewards</h4>
+            <p class="description">Earn points for submitting helpful posts or answering questions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 <%= render "layouts/footer" %>
