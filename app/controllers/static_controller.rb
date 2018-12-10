@@ -2,7 +2,8 @@ class StaticController < ApplicationController
   def home
     if user_signed_in?
 	  	@enrolls = Enroll.all.where(user: current_user)
-	  	@posts = Post.all
+      @search = Post.ransack(params[:q])
+      @posts = @search.result.includes(:comments)
       @myposts = Post.all.where(user: current_user)
       @comments = Comment.all
       @mycomments = Comment.all.where(user: current_user)

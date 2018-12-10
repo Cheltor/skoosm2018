@@ -56,6 +56,9 @@ gem 'stripe'
 # API Key safety
 gem 'figaro'
 
+# Paginate
+gem 'will_paginate', '~> 3.1.0'
+
 group :production do
   #Postgresql
   gem 'pg'

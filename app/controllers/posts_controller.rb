@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @search = Post.ransack(params[:q])
-    @posts = @search.result(distinct: true).includes(:comments).where.not(id: Flag.select(:post_id))
+    @posts = @search.result(distinct: true).includes(:comments).where.not(id: Flag.select(:post_id)).paginate(page: params[:page], per_page: 7)
   end
 
   # GET /posts/1
