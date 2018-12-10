@@ -78,6 +78,8 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.8.0)
@@ -127,6 +129,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.0.7)
       actionpack (= 5.0.7)
       activesupport (= 5.0.7)
@@ -208,11 +215,13 @@ DEPENDENCIES
   devise
   figaro
   font-awesome-rails
+  heroku-deflater
   jbuilder (~> 2.0)
   jquery-rails
   pg
   popper_js (~> 1.12.9)
   rails (~> 5.0.7)
+  rails_12factor
   ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

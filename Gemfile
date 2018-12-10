@@ -62,6 +62,8 @@ gem 'will_paginate', '~> 3.1.0'
 group :production do
   #Postgresql
   gem 'pg'
+  gem 'rails_12factor'
+  gem 'heroku-deflater' 
 end
 
 group :development, :test do
