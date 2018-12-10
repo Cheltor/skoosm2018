@@ -1,6 +1,24 @@
-<h1>Editing Post</h1>
+<% @title="Edit Post" %>
 
+
+    <div class="page-header header-filter page-header-mini" filter-color="black">
+        <div class="page-header-image" data-parallax="false" style="background-image: url('/assets/img/bg24.jpg');">
+        </div>
+        <div class="content-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <% flash.each do |name, msg| %>
+          			<%= content_tag(:div, msg, class: "alert alert-info") %>
+          		<% end %>
+              <h2 class="title">Edit</h2>
+            </div>
+          </div>
+        </div>
+
+    </div>
+<br>
+<br>
 <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= render "layouts/footer"%>
+

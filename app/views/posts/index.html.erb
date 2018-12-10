@@ -1,3 +1,5 @@
+<% @title="Posts" %>
+
 <div class="contatiner" style="padding-top:30px">
     <div class="page-header page-header-small">
       <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg32.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
@@ -5,6 +7,9 @@
       <div class="content-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
+            <% flash.each do |name, msg| %>
+        			<%= content_tag(:div, msg, class: "alert alert-info") %>
+        		<% end %>
             <h1 class="title">Search the Posts</h1>
             <div class="card card-raised card-form-horizontal card-plain">
               <div class="card-body">
@@ -38,7 +43,7 @@
                       <th>Course</th>
                       <th>University</th>
                       <th>Post Karma</th>
-                      <th>User(karma)</th>
+                      <th>User (karma)</th>
                       <th>Like</th>
                       <th>Dislike</th>
                       <th>Time created</th>
@@ -48,7 +53,7 @@
                   <% @posts.each do |post| %>
                     <tr>
                       <td><%= link_to post.title, post %></td>
-                      <td><%= post.course.name %></td>
+                      <td><%= link_to post.course.name, post.course %></td>
                       <td><%= post.course.university.name %></td>
                       <% if post.user.blank? %>
                           <td>N/A</td>
@@ -57,7 +62,7 @@
                           <td>N/A</td>
                         <% else %>
                           <td><%= post.get_upvotes.size %> - <%= post.get_downvotes.size %> = <%= post.weighted_score %> </td>
-                          <td><%= post.user.email %>(<%= post.user.try(:karma) %>)</td>
+                          <td><%= post.user.email %> (<%= post.user.try(:karma) %>)</td>
                           <td class="td-actions"><%= link_to like_post_path(post), method: :put do %>
                             <i class="material-icons">thumb_up</i><% end %></td>
                           <td class="td-actions"><%= link_to dislike_post_path(post), method: :put do %>
@@ -87,7 +92,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 mr-auto ml-auto">
-          <h2 class="text-center title">Didn't find what you're looking for?</h2>
+          <h2 class="text-center title">Couldn't find what you're looking for?</h2>
           <h4 class="text-center description">Submit a post with your question and see if anyone else has found it.</h4>
           <div style="text-align:center">
           <%= link_to 'New Post', new_post_path, class:"btn btn-primary btn-round mt-4 btn-lg" %>

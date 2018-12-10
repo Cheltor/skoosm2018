@@ -1,14 +1,12 @@
 <%= form_for([@post, @post.comments.build]) do |f| %>
 <div class="media media-post">
   <div class="media-body">
-	  <div class="field">
-	    <%= f.text_area :content, :class => "form-control", :placeholder => "Write some nice stuff or nothing..." %>
-	  </div>
-  </div>
-  <div class="media-footer">
-	<div class="actions">
-	<%= f.button :Submit, class: "btn btn-primary btn-round btn-fill btn-wd pull-left" %> 
-	</div>
+	  <%= f.text_area :content, :class => "form-control", :placeholder => "Write some nice stuff or nothing...", :rows => 4 %>
+    <div class="media-footer">
+				<%= f.button :Submit, class: "btn btn-primary pull-right" do %> 
+        <i class="material-icons">chat</i> Submit
+      	<% end %>
+    </div>
   </div>
 </div>
 <% end %>

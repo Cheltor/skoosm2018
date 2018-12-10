@@ -31,8 +31,13 @@
 	                  							</div> -->
 	
 	                                <div class="card-footer text-center">
-	                                    <a href="#pablo" class="btn btn-primary btn-round btn-lg">Get Started</a>
+	                                		<%= link_to 'Sign Up', signup_path, class:"btn btn-primary btn-round btn-lg btn-simple" %>     
+																		  <%= f.button :Submit, class: "btn btn-primary btn-round btn-lg" %> 
 	                                </div>
+	                                <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                                  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br><br>
+
+
 								<% end %>
 							</div>
 	                    </div>
@@ -40,7 +45,7 @@
 	            </div>
 	        </div>
 	
-	        <footer class="footer">
+	        <footer class="footer" style="position:relative; padding-top:260px">
 	    
 	  <div class="container">
 	    <nav>
@@ -62,31 +67,3 @@
 	</footer>
 	
 </div>	
-
-
-<h2>Business Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "businesses/shared/links" %>

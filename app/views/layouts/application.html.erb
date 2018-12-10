@@ -19,10 +19,18 @@
 </head>
 <body>
   <!-- Navbars -->
+  <% if user_signed_in? %>
+  <!-- User logged in -->
+  <%= render "layouts/user_navbar" %>
+  <% elsif business_signed_in? %>
+  <!-- Business logged in -->
+  <%= render "layouts/business_navbar" %>
+  <% else %>
   <!-- Not logged in -->
   <%= render "layouts/navbar"%>
-  <!-- User logged in -->
-  <!-- Business logged in -->
+  <% end %>
+
+
         
         <%= yield %>
         
