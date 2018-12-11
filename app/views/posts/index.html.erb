@@ -33,7 +33,9 @@
     </div>
   <% if @posts.blank? %>
   <% else %>
-  <div class="card">
+  <br>
+  <div class="container-fluid">
+    <div class="card">
     <div class="card-content">
         <div class="table-responsive">
             <table class="table">
@@ -52,7 +54,7 @@
                 <tbody>
                   <% @posts.each do |post| %>
                     <tr>
-                      <td><%= link_to post.title, post %></td>
+                      <td><strong><%= link_to post.title, post %></strong></td>
                       <td><%= link_to post.course.name, post.course %></td>
                       <td><%= post.course.university.name %></td>
                       <% if post.user.blank? %>
@@ -85,6 +87,7 @@
           </div>
         </div>
     </div>
+  </div>
   </div>
   <% end %>
   

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks	
 //= require businesses
 //= require material/jquery.min
 //= require material/popper.min
@@ -26,3 +27,4 @@
 //= require material/now-ui-kit
 //= require select2
 //= require_tree .
+

@@ -7,7 +7,8 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.all
+    @search = Reward.ransack(params[:q])
+    @rewards = @search.result(distinct: true).includes(:description).paginate(page: params[:page], per_page: 15)
   end
 
   # GET /rewards/1

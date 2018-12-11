@@ -1,3 +1,9 @@
+<% if user_signed_in? %>
+<% elsif business_signed_in? %>
+<% @title= current_business.name %>
+
+<% else %>
+
 <% @title="Home" %>
 
 
@@ -82,3 +88,4 @@
     </div>
 </div>
 <%= render "layouts/footer" %>
+<% end %>
