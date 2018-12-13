@@ -59,6 +59,10 @@ gem 'figaro'
 # Paginate
 gem 'will_paginate', '~> 3.1.0'
 
+# Puma
+gem 'puma'
+
+
 group :production do
   #Postgresql
   gem 'pg'
