@@ -1,4 +1,10 @@
+
+<div class="col-md-6 ml-auto mr-auto">
+  <div class="card card-contact card-raised">
 <%= form_for(reward) do |f| %>
+      <div class="card-body">
+
+  
   <% if reward.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(reward.errors.count, "error") %> prohibited this reward from being saved:</h2>
@@ -9,24 +15,23 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %>  
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder:"Reward Name", autocomplete:"reward name" %>
   </div>
-
-  <div class="field">
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
+  
+  
+  <div class="form-group">
+    <%= f.number_field :cost, autocomplete: "off", class: 'form-control', placeholder:"Reward Cost" %>
   </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class="form-group">
+    <%= f.text_area :description, autocomplete: "off", class: 'form-control', placeholder:"Reward Desciption" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions form-group">
+    <%= f.submit "Submit", class: 'btn btn-primary btn-round btn-lg' %>
+  </div>
   </div>
 <% end %>
+</div>
+</div>

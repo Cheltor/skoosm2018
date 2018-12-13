@@ -1,17 +1,5 @@
 <% @title="Rewards" %>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="contatiner" style="padding-top:30px">
     <div class="page-header page-header-small">
       <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg32.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
@@ -22,23 +10,7 @@
             <% flash.each do |name, msg| %>
         			<%= content_tag(:div, msg, class: "alert alert-info") %>
         		<% end %>
-            <h1 class="title">Search the Rewards</h1>
-            <div class="card card-raised card-form-horizontal card-plain">
-              <div class="card-body">
-              <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-            		<div class="row">
-            			<div class="col-md-9">
-            				<div class="form-group">
-      		        	   <%= f.text_field :name_or_description_or_business_name_cont, placeholder: 'Keywords', class:"form-control", style:"background-color:white" %>
-                    </div>
-                  </div>
-            			<div class="col-md-3">
-      						  <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-            			</div>
-            		</div>
-              <% end %>
-              </div>
-            </div>
+            <h1 class="title">Our Rewards</h1>
           </div>
         </div>
       </div>
@@ -53,33 +25,24 @@
             <table class="table">
                 <thead class="text-primary">
                     <tr>
-                      <th>Business</th>
                       <th>Name</th>
                       <th>Cost</th>
                       <th>Description</th>
+                      <th colspan="2"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <% @rewards.each do |reward| %>
                     <tr>
-                      <td><%= reward.business.name %></td>
                       <td><strong><%= link_to reward.name, reward %></strong></td>
                       <td><%= reward.cost %> Points</td>
                       <td><%= reward.description %></td>
+                      <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
+                      <td><%= link_to 'Destroy', reward, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
                   <% end %>
                 </tbody>
             </table>
-        </div>
-        <div class="row">
-          <div class="col mr-auto ml-auto">
-            <div class="apple_pagination">
-              <div class="page_info">
-                <%= page_entries_info @rewards %>
-              </div>
-              <%= will_paginate @rewards, :container => false %>
-            </div>
-          </div>
         </div>
     </div>
   </div>

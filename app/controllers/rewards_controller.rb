@@ -4,11 +4,17 @@ class RewardsController < ApplicationController
   before_action :authorized_business, only: [:edit, :update]
   before_filter :authenticate_user!, only: [:rewardpurchase]
   
+  # GET /rewards/myrewards
+  # GET /rewards/myrewards.json
+  def myrewards
+    @rewards = Reward.all.where(business: current_business)
+  end
+  
   # GET /rewards
   # GET /rewards.json
   def index
     @search = Reward.ransack(params[:q])
-    @rewards = @search.result(distinct: true).includes(:description).paginate(page: params[:page], per_page: 15)
+    @rewards = @search.result(distinct: true).paginate(page: params[:page], per_page: 15)
   end
 
   # GET /rewards/1

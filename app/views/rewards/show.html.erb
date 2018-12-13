@@ -1,21 +1,58 @@
-<p id="notice"><%= notice %></p>
+<% @title= @reward.name %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @reward.name %>
-</p>
+<body class="blog-post">
+  <div class="wrapper">
+    <div class="page-header header-filter page-header-mini" filter-color="black">
+        <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+        </div>
+        <div class="content-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title"><%= @reward.name %></h2>
+              <h4>By: <%= @reward.business.name %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="button-container">
+              <br><br><br>
+                <%= link_to edit_reward_path(@reward), method: :put, class: "btn btn-icon btn-lg btn-info btn-round" do %>
+                  <i class="fab fa-twitter"></i>
+                <% end %>
+                <% if @reward.business == current_business %>
+                    <%= link_to edit_reward_path(@reward), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
+                      <i class="material-icons" style="padding-top:16px">edit</i>
+                    <% end %>
+                    <%= link_to @reward, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-icon btn-lg btn-danger btn-round' do %>
+                      <i class="material-icons" style="padding-top:16px">delete</i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <% flash.each do |name, msg| %>
+            			<%= content_tag(:div, msg, class: "alert alert-info") %>
+            		<% end %>
+                <h3 class="title"><%= @reward.name %></h3>
+                <p><%= simple_format @reward.description %></p>
+                <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
 
-<p>
-  <strong>Cost:</strong>
-  <%= @reward.cost %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @reward.description %>
-</p>
-
-<%= link_to 'Edit', edit_reward_path(@reward) %> |
-<%= link_to 'Back', rewards_path %>
-
-<%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
+<%= render "layouts/footer"%>

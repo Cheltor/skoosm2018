@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'myrewards' => 'rewardpurchases#myrewards'
   get 'rewardpurchases/:id' => 'rewardpurchase#show'
-  
+  get 'ourrewards' => 'rewards#myrewards'
 
   resources :courses do
     member do
