@@ -62,6 +62,8 @@ gem 'will_paginate', '~> 3.1.0'
 # Puma
 gem 'puma'
 
+# Font Awesome
+gem 'font-awesome-sass'
 
 group :production do
   #Postgresql

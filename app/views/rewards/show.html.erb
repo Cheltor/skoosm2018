@@ -19,9 +19,16 @@
           <div class="row">
             <div class="col-md-12">
               <div class="button-container">
+              <% if @post.url.blank? %>
               <br><br><br>
-                <%= link_to edit_reward_path(@reward), method: :put, class: "btn btn-icon btn-lg btn-info btn-round" do %>
-                  <i class="fab fa-twitter"></i>
+                <% else %>
+                  <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
+                <% end %>
+                <%= link_to edit_reward_path(@reward), class: "btn btn-icon btn-lg btn-facebook btn-round" do %>
+                  <i class="fa fa-facebook fa-2x" style="padding-top:15px"></i>
+                <% end %>
+                <%= link_to edit_reward_path(@reward), class: "btn btn-icon btn-lg btn-twitter btn-round" do %>
+                  <i class="fa fa-twitter fa-2x" style="padding-top:15px"></i>
                 <% end %>
                 <% if @reward.business == current_business %>
                     <%= link_to edit_reward_path(@reward), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
