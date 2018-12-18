@@ -19,8 +19,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="button-container">
-              <% if @post.url.blank? %>
-              <br><br><br>
+                <% if @post.url.blank? %>
+                <br><br><br>
                 <% else %>
                   <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
                 <% end %>
@@ -50,11 +50,17 @@
           <div class="container">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
-                <% flash.each do |name, msg| %>
-            			<%= content_tag(:div, msg, class: "alert alert-info") %>
-            		<% end %>
-                <h3 class="title"><%= @post.title %></h3>
-                <p><%= simple_format @post.content %></p>
+                <div class="card">
+                  <div class="card-content">
+                    <div class="container">
+                    <% flash.each do |name, msg| %>
+                			<%= content_tag(:div, msg, class: "alert alert-info") %>
+                		<% end %>
+                    <h3 class="title"><%= @post.title %></h3>
+                    <p><%= simple_format @post.content %></p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -69,7 +75,6 @@
                 </div>
                 <h3 class="title text-center">Post your comment</h3>
                   <%= render "comments/form" %>
-                <!-- end media-post -->
               </div>
             </div>
           </div>

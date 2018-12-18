@@ -5,12 +5,12 @@
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h2 class="title">Pick the best plan for you</h2>
-              <h4 class="description">You have Unlimited Rewards on each package.</h4>
               <div class="section-space"></div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 ml-auto">
+              <%= link_to new_business_registration_path(plan: @monthly_plan.id) do %>
               <div class="card card-pricing">
                 <div class="card-body">
                   <h5 class="category">Monthly</h5>
@@ -18,11 +18,12 @@
                     <small>$</small>40
                     <small>/mo</small>
                   </h1>
-	              <%= link_to 'Sign Up', new_business_registration_path(plan: @monthly_plan.id), class:"btn btn-primary btn-round" %>
                 </div>
               </div>
+              <% end %>
             </div>
             <div class="col-md-4 mr-auto">
+              <%= link_to new_business_registration_path(plan: @annually_plan.id) do %>
               <div class="card card-pricing card-raised" data-background-color="orange">
                 <div class="card-body">
                   <h5 class="category">Annually</h5>
@@ -30,9 +31,9 @@
                     <small>$</small>400
                     <small>/yr</small>
                   </h1>
-	              <%= link_to 'Sign Up', new_business_registration_path(plan: @annually_plan.id), class:"btn btn-neutral btn-primary btn-round" %>
                 </div>
               </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -54,7 +55,7 @@
                           </div>
                         <div class="description">
                             <h4 class="info-title">Select a plan</h4>
-                            <p>All plans allow businesses to create an unlimited number of rewards. </p>
+                            <p>Both plans allow you to create as many rewards as you would like but the annual plan saves you 17%.</p>
                         </div>
                     </div>
 
@@ -66,7 +67,7 @@
                           </div>
                         <div class="description">
                             <h4 class="info-title">Create a reward</h4>
-                            <p>Post your Reward and choose the number of points that a student would need to submit in order to recieve it.</p>
+                            <p>Post your reward and choose the amount of points a student would need to spend to earn the reward.</p>
                         </div>
                     </div>
 
@@ -78,13 +79,13 @@
                         </div>
                         <div class="description">
                             <h4 class="info-title">Redeem Rewards</h4>
-                            <p>Students purchase rewards through points and bring their phone to the store for verification.</p>
+                            <p>Students purchase rewards with their points and bring their phone to the store for verification.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="tablet-container">
-                        <img src="assets/img/ipad2-inverted.png">
+                        <img src="assets/img/bg11.jpg">
                     </div>
                 </div>
             </div>

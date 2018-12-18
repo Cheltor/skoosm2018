@@ -1,14 +1,18 @@
 <% if user_signed_in? %>
+<% @title= current_user.email %>
+<%= render "static/userdash" %>
+<%= render "layouts/footer" %>
 <% elsif business_signed_in? %>
 <% @title= current_business.name %>
-
+<%= render "static/bizdash" %>
+<%= render "layouts/footer" %>
 <% else %>
 
 <% @title="Home" %>
 
 
 <div class="header-2">
-    <div class="page-header header-filter">
+    <div class="page-header header-filter page-header-small">
       <div class="page-header-image" style="background-image: url('assets/img/bg11.jpg');"></div>
       <div class="container">
         <div class="row">
@@ -16,8 +20,7 @@
             <% flash.each do |name, msg| %>
         			<%= content_tag(:div, msg, class: "alert alert-info") %>
         		<% end %>
-            <h1 class="title">Find what you've been searching for</h1>
-            <h5 class="description">End your online scavenger hunt.</h5>
+            <h1 class="title">Search all of the posts</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -42,50 +45,88 @@
     </div>
 </div>
 
-<div class="features-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="title">Simpler. Smarter. Faster.</h2>
-          <h4 class="description">Maybe Reddit has something that I can use here?</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="info info-hover"><%= link_to posts_path do %>
+<div class="features-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <h2 class="title">Simpler. Smarter. Faster.</h2>
+        <h4 class="description">Skoosm is the online community for students to learn, share their knowledge and recieve rewards for their hard work.</h4>
+        <div class="info info-horizontal">
+            <%= link_to posts_path do %>
             <div class="icon icon-success icon-circle">
               <i class="material-icons">
                 question_answer
               </i>
             </div><% end %>
+          <div class="description">
+            <%= link_to posts_path do %>
             <h4 class="info-title">Search Posts</h4>
-            <p class="description">Find answers to questions already asked, answers found, and more.</p>
+            <% end %>
+            <p>Find answers to questions already asked, answers found, and more.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="info info-hover"><%= link_to courses_path do %>
+        <div class="info info-horizontal">
+            <%= link_to courses_path do %>
             <div class="icon icon-info icon-circle">
                 <i class="material-icons">
                 account_balance
                 </i>
             </div><% end %>
+          <div class="description">
+            <%= link_to courses_path do %>
             <h4 class="info-title">Search by class</h4>
-            <p class="description">Find the information associated with each of your classes.</p>
+            <% end %>
+            <p>Find information associated with each of your classes.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="info info-hover"><%= link_to rewards_path do %>
+        <div class="info info-horizontal">
+            <%= link_to rewards_path do %>
             <div class="icon icon-warning icon-circle">
                 <i class="material-icons">
                 redeem
                 </i>
             </div><% end %>
+          <div class="description">
+            <%= link_to rewards_path do %>
             <h4 class="info-title">Earn rewards</h4>
-            <p class="description">Earn points for submitting helpful posts or answering questions.</p>
+            <% end %>
+            <p>Earn points for submitting helpful posts or answering questions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="tablet-container">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-content" style="text-align:center">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead class="text-primary">
+                              <tr>
+                                <th>Title</th>
+                                <th>Course</th>
+                                <th>Time created</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @posts.each do |post| %>
+                              <tr>
+                                <td><strong><%= link_to post.title, post %></strong></td>
+                                <td><%= link_to post.course.name, post.course %></td>
+                                <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
+
 <%= render "layouts/footer" %>
 <% end %>

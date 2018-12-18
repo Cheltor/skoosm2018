@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120015641) do
+ActiveRecord::Schema.define(version: 20181214142014) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20181120015641) do
     t.integer  "plan_id"
     t.string   "stripe_customer_token"
     t.datetime "deleted_at"
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "twitter"
     t.index ["confirmation_token"], name: "index_businesses_on_confirmation_token", unique: true
     t.index ["email"], name: "index_businesses_on_email", unique: true
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true

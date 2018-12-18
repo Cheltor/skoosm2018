@@ -14,7 +14,7 @@ class StaticController < ApplicationController
       @myrewards = Reward.all.where(business: current_business)
     else
       @search = Post.ransack(params[:q])
-      @posts = @search.result.includes(:comments)
+      @posts = @search.result.includes(:comments).where.not(id: Flag.select(:post_id)).order("created_at DESC").paginate(page: params[:page], per_page: 11)
     end
   end  
   
@@ -26,5 +26,8 @@ class StaticController < ApplicationController
     @monthly_plan = Plan.find(1)
     @annually_plan = Plan.find(2)
     @free_plan = Plan.find(3)
+  end
+  
+  def about
   end
 end

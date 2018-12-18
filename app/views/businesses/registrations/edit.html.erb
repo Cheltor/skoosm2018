@@ -3,9 +3,74 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+   <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+    <%= f.email_field :email, class: 'form-control', placeholder:"Email", autocomplete:"email" %>
+  </div>
+  
+  
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:"Password (6 characters minimum)" %>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:"Confirm Password" %>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-briefcase"></i>
+      </span>
+    </div>
+    <%= f.text_field :name, class: 'form-control', placeholder:"Business Name" %>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+    <%= f.text_field :website, class: 'form-control', placeholder:"Website" %>
+  </div>
+  
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+      <i class="fa fa-twitter"></i>
+      </span>
+    </div>
+    <%= f.text_field :twitter, class: 'form-control', placeholder:"Twitter" %>
+  </div>
+  
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-facebook"></i>
+      </span>
+    </div>
+    <%= f.text_field :facebook, class: 'form-control', placeholder:"Facebook" %>
+  </div>
+  
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-key"></i>
+      </span>
+    </div>
+    <%= f.text_field :code, class: 'form-control', placeholder:"Reward Code (1234)" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

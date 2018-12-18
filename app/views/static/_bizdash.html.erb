@@ -1,0 +1,105 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4 style="text-align:center">Business Name: <strong><%= current_business.name %></strong></h4>
+        <div style="text-align:center">
+          <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModal">
+            Our business reward code
+          </button>
+          <br><br>
+          <%= link_to 'New Reward', new_reward_path, :class => "btn btn-round btn-primary btn-fill" %>
+        </div>
+        <br>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Our code</h4>
+              </div>
+              <div class="modal-body" style="text-align:center">
+                <%= current_business.code %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="table-responsive">
+          <div class="container-fluid">
+            <h4 style="text-align:center">Our Rewards</h4>
+            <% if @rewards.blank? %>
+              <h5>You have not created any rewards yet</h5>
+            <% else %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                    <th>Time created</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @myrewards.each do |reward| %>
+                    <tr>
+                      <td><%= reward.name %></td>
+                      <td><%= reward.cost %></td>
+                      <td><%= reward.description %></td>
+                      <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
+                      <td><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+        </div>
+        <div style="text-align:center">
+        <%= link_to 'All my rewards', myrewards_path, class: "btn btn-primary btn-round" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<% if current_business.twitter.empty? %>
+    <% else %>
+    <% if current_business.twitter.start_with?('@') %>
+        <h1><%= current_business.twitter %> twitter </h1>
+    <% else %>
+        <h1>@<%= current_business.twitter %> twitter account</h1>
+    <% end %>
+<% end %>
+<% if current_business.facebook.empty? %>
+    <% else %>
+    <% if current_business.facebook.start_with?('@') %>
+    <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook.sub('@', ''), :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+    <% elsif current_business.facebook.start_with?('http') %>
+    <%= link_to 'Facebook', current_business.facebook, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+        <h1><%= current_business.facebook %> facebook </h1>
+    <% else %>
+        <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+        <h1>@<%= current_business.facebook %> facebook account</h1>
+    <% end %>
+<% end %>
+<% if current_business.website.empty? %>
+<% else %>
+    <%= link_to current_business.name, current_business.website, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
+<% end %>
+<p>test test test</p>
