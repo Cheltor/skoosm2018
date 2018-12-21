@@ -1,4 +1,5 @@
-<% @title= @post.title %>
+<% @title= truncate(@post.title, :length => 35) %>
+
 
 <body class="blog-post">
   <div class="wrapper">
@@ -8,12 +9,15 @@
         <div class="content-center">
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
-              <h2 class="title"><%= @post.title %></h2>
+              <h2 class="title"><%= truncate(@post.title, :length => 36) %></h2>
               <h4>By: <%= @post.user.email %></h4>
             </div>
           </div>
         </div>
       </div>
+      <% flash.each do |name, msg| %>
+      	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
       <div class="section">
         <div class="container">
           <div class="row">
@@ -53,9 +57,6 @@
                 <div class="card">
                   <div class="card-content">
                     <div class="container">
-                    <% flash.each do |name, msg| %>
-                			<%= content_tag(:div, msg, class: "alert alert-info") %>
-                		<% end %>
                     <h3 class="title"><%= @post.title %></h3>
                     <p><%= simple_format @post.content %></p>
                     </div>
@@ -70,7 +71,8 @@
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
                 <div class="media-area">
-                  <h3 class="title text-center"><%= @post.comments.all.count %> Comments</h3>
+                  <h3 class="title text-center"><%= pluralize(@post.comments.all.count, 'Comment') %></h3>
+
                   <%= render :partial => @post.comments.where.not(id: Hide.select(:comment_id)) %>
                 </div>
                 <h3 class="title text-center">Post your comment</h3>

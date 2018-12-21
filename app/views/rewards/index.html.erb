@@ -1,17 +1,5 @@
 <% @title="Rewards" %>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="contatiner" style="padding-top:30px">
     <div class="page-header page-header-small">
       <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg32.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
@@ -43,6 +31,8 @@
         </div>
       </div>
     </div>
+    <br>
+    <h3 style="text-align:center">You currently have <%= pluralize(current_user.try(:karma), 'point') %>.</h3>
   <% if @rewards.blank? %>
   <% else %>
   <br>
@@ -55,7 +45,7 @@
                     <tr>
                       <th>Business</th>
                       <th>Name</th>
-                      <th>Cost</th>
+                      <th><%= sort_link @search, :cost, "Cost" %></th>
                       <th>Description</th>
                   </tr>
                 </thead>
@@ -65,7 +55,7 @@
                       <td><%= reward.business.name %></td>
                       <td><strong><%= link_to reward.name, reward %></strong></td>
                       <td><%= reward.cost %> Points</td>
-                      <td><%= reward.description %></td>
+                      <td><%= truncate(reward.description, :length => 50) %></td>
                     </tr>
                   <% end %>
                 </tbody>

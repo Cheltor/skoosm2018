@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
               <h2 class="title"><%= @reward.name %></h2>
-              <h4>By: <%= @reward.business.name %></h4>
+              <h4><%= @reward.business.name %></h4>
             </div>
           </div>
         </div>
@@ -19,17 +19,51 @@
           <div class="row">
             <div class="col-md-12">
               <div class="button-container">
-              <% if @post.url.blank? %>
+              <% if @reward.business.website.blank? %>
               <br><br><br>
                 <% else %>
-                  <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
+                  <% if @reward.business.website.start_with?('http') %>
+                  <%= link_to truncate(@reward.business.website, :length => 35), @reward.business.website, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
+                  <% else %>
+                  <%= link_to truncate(@reward.business.website, :length => 35), "http://" + @reward.business.website, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
+                  <% end %>
                 <% end %>
-                <%= link_to edit_reward_path(@reward), class: "btn btn-icon btn-lg btn-facebook btn-round" do %>
-                  <i class="fa fa-facebook fa-2x" style="padding-top:15px"></i>
+                
+                <% if @reward.business.facebook.empty? %>
+                    <% else %>
+                    <% if @reward.business.facebook.start_with?('@') %>
+                    <%= link_to "https://www.facebook.com/" + @reward.business.facebook.sub('@', ''), :target => "_blank", class: "btn btn-icon btn-lg btn-facebook btn-round" do%>
+                    <i class="fa fa-facebook fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% elsif @reward.business.facebook.start_with?('http') %>
+                    <%= link_to @reward.business.facebook, :target => "_blank", class: "btn btn-icon btn-lg btn-facebook btn-round" do%>
+                    <i class="fa fa-facebook fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% else %>
+                    <%= link_to "https://www.facebook.com/" + @reward.business.facebook, :target => "_blank", class: "btn btn-icon btn-lg btn-facebook btn-round" do%>
+                    <i class="fa fa-facebook fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% end %>
                 <% end %>
-                <%= link_to edit_reward_path(@reward), class: "btn btn-icon btn-lg btn-twitter btn-round" do %>
-                  <i class="fa fa-twitter fa-2x" style="padding-top:15px"></i>
+              
+                <% if @reward.business.twitter.empty? %>
+                    <% else %>
+                    <% if @reward.business.twitter.start_with?('@') %>
+                    <%= link_to "https://www.twitter.com/" + @reward.business.twitter, :target => "_blank", class: "btn btn-icon btn-lg btn-twitter btn-round" do%>
+                    <i class="fa fa-twitter fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% elsif @reward.business.twitter.start_with?('http') %>
+                    <%= link_to @reward.business.twitter, :target => "_blank", class: "btn btn-icon btn-lg btn-twitter btn-round" do%>
+                    <i class="fa fa-twitter fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% else %>
+                    <%= link_to "https://www.twitter.com/" + @reward.business.twitter, :target => "_blank", class: "btn btn-icon btn-lg btn-twitter btn-round" do%>
+                    <i class="fa fa-twitter fa-2x" style="padding-top:15px"></i>
+                    <% end %>
+                    <% end %>
                 <% end %>
+                
+                
                 <% if @reward.business == current_business %>
                     <%= link_to edit_reward_path(@reward), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
                       <i class="material-icons" style="padding-top:16px">edit</i>
@@ -52,7 +86,19 @@
             		<% end %>
                 <h3 class="title"><%= @reward.name %></h3>
                 <p><%= simple_format @reward.description %></p>
-                <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
+                <div class="pull-right">
+                <h4 class="" style="text-align:center"><%= @reward.cost %> Points</h4>
+                <% if user_signed_in? %>
+                  <% if current_user.try(:karma) >= @reward.cost %>
+                    <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round btn-lg' %>
+                  <% else %>
+                    <button type="button" class="btn btn-primary btn-round btn-lg" disabled>Pruchase</button>
+                  <% end %>
+                <% elsif business_signed_in? %>
+                <% else %>
+                <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round btn-lg' %>
+                <% end %>
+                </div>
               </div>
             </div>
           </div>

@@ -12,16 +12,10 @@
       </div>
       <div class="collapse navbar-collapse show">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:center">
-                Rewards
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        						<%= link_to 'All Rewards', rewards_path, class:"dropdown-item", style:"text-align:center" %>
-        						<%= link_to 'New Reward', new_reward_path, class:"dropdown-item", style:"text-align:center" %>
-                    <%= link_to 'My Rewards', ourrewards_path, class:"dropdown-item", style:"text-align:center" %>
-              </div>
-            </li>
+            <li class="nav-item" style="text-align:center"><%= link_to 'Dashboard', root_path, class:"nav-link"%></li>
+            <li class="nav-item" style="text-align:center"><%= link_to 'All Rewards', rewards_path, class:"nav-link" %></li>
+            <li class="nav-item" style="text-align:center"><%= link_to 'New Reward', new_reward_path, class:"nav-link" %></li>
+            <li class="nav-item" style="text-align:center"><%= link_to 'My Rewards', ourrewards_path, class:"nav-link" %></li>
             <li class="nav-item" style="text-align:center"><%= link_to 'Edit Account', edit_business_registration_path, class:"nav-link" %></li>
             <li class="nav-item" style="text-align:center"><%= link_to 'Sign Out', destroy_business_session_path, :method => :delete, class:"nav-link" %></li>
         </ul>

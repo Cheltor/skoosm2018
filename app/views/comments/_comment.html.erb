@@ -5,7 +5,11 @@
        </h5>
        <p><%= simple_format comment.content %></p>
        <div class="media-footer">
+       <% if comment.user == current_user %>
+	   <%= link_to [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-neutral pull-right" do %><i class="material-icons">delete</i><% end %>
+       <% else %>
          <%= link_to hide_post_comment_path(@post, comment), method: :put, class:"btn btn-danger btn-neutral pull-right" do %><i class="material-icons">flag</i><% end %>
+       <% end %>  
          <a href="#pablo" class="btn btn-primary btn-neutral pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
            <i class="material-icons">chat</i> Reply
          </a>

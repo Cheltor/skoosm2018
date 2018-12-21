@@ -1,33 +1,253 @@
-<div class="header-2">
-    <div class="page-header header-filter page-header-small">
-      <div class="page-header-image" style="background-image: url('assets/img/bg11.jpg');"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
-            <% flash.each do |name, msg| %>
-        			<%= content_tag(:div, msg, class: "alert alert-info") %>
-        		<% end %>
-            <h1 class="title">Search all of the posts</h1>
+<div class="page-header header-filter page-header-mini" filter-color="black">
+  <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+  </div>
+  <div class="content-center">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <%= current_user.email.slice(0, current_user.email.index('@')).upcase %> Dashboard</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+<% end %>
+<br>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-6">
+        <h4 class="title" style="text-align:center">My Posts</h4>
+        <div class="card">
+          <div class="card-content">
+            <div class="table-responsive">
+              <div class="container-fluid">
+
+                <% if @myposts.blank? %>
+                <br>
+                  <h5 style="text-align:center">You haven't made any posts yet.</h5>
+                  <p style="text-align:center">
+                    <%= link_to 'New Post', new_post_path, class: "btn btn-primary btn-simple" %>
+                  </p>
+                  <% else %>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="text-align:center">Post Points</th>
+                          <th style="text-align:center">Title</th>
+                          <th style="text-align:center">Course</th>
+                          <th style="text-align:center">Time created</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% @myposts.each do |post| %>
+                          <tr>
+                            <td style="text-align:center">
+                              <%= post.weighted_score %>
+                            </td>
+                            <td><strong><%= link_to truncate(post.title, :length => 50), post %></strong></td>
+                            <td>
+                              <%= post.course.name %>
+                            </td>
+                            <td>
+                              <%= time_ago_in_words(post.created_at) + " ago" %>
+                            </td>
+                          </tr>
+                          <% end %>
+                      </tbody>
+                    </table>
+                    <% end %>
+              </div>
+            </div>
+            <% if @myposts.blank? %>
+            <% else %>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'My Posts', posts_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
+            </div>
+            <% end %>
           </div>
-          <div class="col-md-10 ml-auto mr-auto">
-            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-              <div class="card-body">
-    		    <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
-                  <div class="row">
-                    <div class="col-md-9">
-                      <div class="form-group">
-    		        	 <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Keywords', class:"form-control" %>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-     				  <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-                    </div>
-                  </div>
-                <% end %>
+        </div>
+        <h4 class="title" style="text-align:center">My Comments</h4>
+        <div class="card">
+          <div class="card-content">
+            <div class="table-responsive">
+              <div class="container-fluid">
+                <% if @mycomments.blank? %>
+                <br>
+                  <h5 style="text-align:center">You haven't made any comments yet.</h5>
+                  <% else %>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Comment Points</th>
+                          <th>Comment</th>
+                          <th>Post</th>
+                          <th>Time created</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% @mycomments.each do |comment| %>
+                          <tr>
+                            <td>
+                              <%= comment.weighted_score %>
+                            </td>
+                            <td><strong><%= link_to truncate(comment.content, :length => 50), comment.post %></strong></td>
+                            <td><strong><%= link_to truncate(comment.post.title, :length => 50), comment.post %></strong></td>
+                            <td>
+                              <%= time_ago_in_words(comment.created_at) + " ago" %>
+                            </td>
+                          </tr>
+                          <% end %>
+                      </tbody>
+                    </table>
+                    <% end %>
+              </div>
+            </div>
+            <% if @mycomments.blank? %>
+            <% else %>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'My Posts', posts_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <h4 class="title" style="text-align:center">My Rewards</h4>
+        <div class="card">
+          <div class="card-content">
+            <div class="table-responsive">
+              <div class="container-fluid">
+                <br>
+                <h3 style="text-align:center">You currently have <%= current_user.try(:karma) %> points.</h3>
+                <% if @myrewards.blank? %>
+                <br>
+                  <h5 style="text-align:center">You haven't gotten any rewards yet.</h5>
+                  <% else %>
+                    <table class="table">
+                        <thead class="text-primary">
+                            <tr>
+                              <th>Business</th>
+                              <th>Name</th>
+                              <th>Cost</th>
+                              <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @myrewards.each do |reward| %>
+                            <tr>
+                              <td><%= reward.reward.business.name %></td>
+                              <td><strong><%= link_to reward.reward.name, reward %></strong></td>
+                              <td><%= reward.reward.cost %> Points</td>
+                              <td><%= truncate(reward.reward.description, :length => 50) %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                    </table>
+                    <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'Get Rewards', rewards_path, class:"btn btn-simple btn-primary" %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <h4 class="title" style="text-align:center">My Courses</h4>
+        <% if @enrolls.blank? %>
+          <div class="card">
+            <div class="card-content">
+              <div class="container-fluid">
+                <br>
+                <h5 style="text-align:center">You haven't signed up for any courses yet.</h5>
+                <p style="text-align:center">
+                  <%= link_to 'Courses', courses_path, class: "btn btn-simple btn-primary" %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <% else %>
+            <div class="card">
+              <div class="card-content">
+                <div class="container-fluid">
+                  <% @enrolls.each do |enroll| %>
+                    <div class="header" style="text-align:center">
+                      <div>
+                        <h4 class="title">
+                          <%= link_to enroll.course.try(:name), course_path(enroll.course) %>
+                            <p>
+                              <%= pluralize(enroll.course.posts.count, 'post') %> and
+                                <%= pluralize(enroll.course.enrolls.count, 'user') %> enrolled
+                            </p>
+                        </h4>
+                      </div>
+                      <div>
+                        <%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-link btn-lg pull-right btn-lg' %>
+                          <h5 class="pull-left">Recent Posts</h5>
+                      </div>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="text-align:center">Post Points</th>
+                          <th style="text-align:center">Title</th>
+                          <th style="text-align:center">Poster</th>
+                          <th style="text-align:center">Time created</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% enroll.course.posts.where.not(id: Flag.select(:post_id)).order("created_at DESC").paginate(page: params[:page], per_page: 11).each do |post| %>
+                          <tr>
+                            <td style="text-align:center">
+                              <%= post.weighted_score %>
+                            </td>
+                            <td><strong><%= link_to truncate(post.title, :length => 50), post %></strong></td>
+                            <% if post.user.blank? %>
+                              <td>User Deleted</td>
+                              <% else %>
+                                <td>
+                                  <%= post.user.email.slice(0, post.user.email.index('@')) %>
+                                </td>
+                                <% end %>
+                                  <td>
+                                    <%= time_ago_in_words(post.created_at) + " ago" %>
+                                  </td>
+                          </tr>
+                          <% end %>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mr-auto ml-auto">
+                  <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                    <%= link_to "More Posts", course_path(enroll.course), class:"btn btn-simple btn-primary" %>
+                  </div>
+                </div>
+              </div>
+
+              <% end %>
+                <% end %>
+            </div>
+      </div>
+
     </div>
+  </div>
 </div>

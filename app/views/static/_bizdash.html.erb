@@ -1,40 +1,75 @@
+<div class="page-header header-filter page-header-mini" filter-color="black">
+  <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+  </div>
+  <div class="content-center">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <%= current_business.name %> Dashboard</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <h4 style="text-align:center">Business Name: <strong><%= current_business.name %></strong></h4>
-        <div style="text-align:center">
-          <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModal">
-            Our business reward code
-          </button>
-          <br><br>
-          <%= link_to 'New Reward', new_reward_path, :class => "btn btn-round btn-primary btn-fill" %>
-        </div>
-        <br>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Our code</h4>
-              </div>
-              <div class="modal-body" style="text-align:center">
-                <%= current_business.code %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
-              </div>
+      <h4 style="text-align:center">Our Info</h4>
+        <div class="card">
+          <div class="card-content">
+            <div class="container">
+              <h4>Reward Code: <%= current_business.code %></h4>
+            <h4>Name: <%= current_business.name %></h4>
+            <h4>Website: 
+            <% if current_business.website.empty? %>
+            <%= link_to 'Add a Website', edit_business_registration_path, class:"nav-link" %>
+            <% else %>
+                <% if current_business.website.start_with?('http') %>
+                <%= link_to current_business.website, current_business.website, :target => "_blank" %>
+                <% else %>
+                <%= link_to current_business.website, "http://" + current_business.website, :target => "_blank" %>
+                <% end %>
+            <% end %></h4>
+            <h4>Facebook:
+              <% if current_business.facebook.empty? %>
+                  <%= link_to 'Add a Facebook', edit_business_registration_path, class:"nav-link" %>
+                  <% else %>
+                  <% if current_business.facebook.start_with?('@') %>
+                  <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook.sub('@', ''), :target => "_blank", class:""%>
+                  <% elsif current_business.facebook.start_with?('http') %>
+                  <%= link_to 'Facebook', current_business.facebook, :target => "_blank", class:""%>
+                  <% else %>
+                  <%= link_to current_business.facebook, "https://www.facebook.com/" + current_business.facebook, :target => "_blank", class:""%>
+                  <% end %>
+              <% end %>
+              </h4>
+              <h4>Twitter:
+                <% if current_business.twitter.empty? %>
+                  <%= link_to 'Add a Twitter', edit_business_registration_path, class:"nav-link" %>
+                    <% else %>
+                    <% if current_business.twitter.start_with?('@') %>
+                    <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
+                    <% elsif current_business.twitter.start_with?('http') %>
+                    <%= link_to current_business.twitter, current_business.twitter, :target => "_blank", class:""%>
+                    <% else %>
+                    <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
+                    <% end %>
+                <% end %>
+              </h4>
+            </div> 
             </div>
           </div>
         </div>
-      </div>
       <div class="col-md-8">
         <div class="table-responsive">
           <div class="container-fluid">
             <h4 style="text-align:center">Our Rewards</h4>
-            <% if @rewards.blank? %>
-              <h5>You have not created any rewards yet</h5>
+            <div class="card">
+              <div class="card-content">
+              <% if @rewards.blank? %>
+              <br>
+              <h5 style="text-align:center">You have not created any rewards yet</h5>
             <% else %>
               <table class="table">
                 <thead>
@@ -43,63 +78,37 @@
                     <th>Cost</th>
                     <th>Description</th>
                     <th>Time created</th>
-                    <th colspan="1"></th>
+                    <th>Reward purchases</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <% @myrewards.each do |reward| %>
-                    <tr>
-                      <td><%= reward.name %></td>
+                    <tr style="text-align:center">
+                      <td><strong><%= link_to reward.name, reward %></strong></td>
                       <td><%= reward.cost %></td>
                       <td><%= reward.description %></td>
                       <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
-                      <td><%= link_to 'Show', reward, :class => 'btn btn-primary btn-round' %></td>
+                      <td><%= reward.rewardpurchases.count %></td>
                     </tr>
                   <% end %>
                 </tbody>
               </table>
             <% end %>
+              </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'New Reward', new_reward_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
+            </div>
+
+            </div>
           </div>
         </div>
-        <div style="text-align:center">
-        <%= link_to 'All my rewards', myrewards_path, class: "btn btn-primary btn-round" %>
-        </div>
+
       </div>
 
     </div>
   </div>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<% if current_business.twitter.empty? %>
-    <% else %>
-    <% if current_business.twitter.start_with?('@') %>
-        <h1><%= current_business.twitter %> twitter </h1>
-    <% else %>
-        <h1>@<%= current_business.twitter %> twitter account</h1>
-    <% end %>
-<% end %>
-<% if current_business.facebook.empty? %>
-    <% else %>
-    <% if current_business.facebook.start_with?('@') %>
-    <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook.sub('@', ''), :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-    <% elsif current_business.facebook.start_with?('http') %>
-    <%= link_to 'Facebook', current_business.facebook, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-        <h1><%= current_business.facebook %> facebook </h1>
-    <% else %>
-        <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-        <h1>@<%= current_business.facebook %> facebook account</h1>
-    <% end %>
-<% end %>
-<% if current_business.website.empty? %>
-<% else %>
-    <%= link_to current_business.name, current_business.website, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
-<% end %>
-<p>test test test</p>

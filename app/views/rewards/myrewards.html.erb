@@ -1,7 +1,7 @@
 <% @title="Rewards" %>
 
 <div class="contatiner" style="padding-top:30px">
-    <div class="page-header page-header-small">
+    <div class="page-header page-header-mini">
       <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg32.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
       </div>
       <div class="content-center">
@@ -10,7 +10,7 @@
             <% flash.each do |name, msg| %>
         			<%= content_tag(:div, msg, class: "alert alert-info") %>
         		<% end %>
-            <h1 class="title">Our Rewards</h1>
+            <h1 class="title"><%= current_business.name %> Rewards</h1>
           </div>
         </div>
       </div>

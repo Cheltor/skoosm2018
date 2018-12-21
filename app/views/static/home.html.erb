@@ -17,9 +17,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <% flash.each do |name, msg| %>
-        			<%= content_tag(:div, msg, class: "alert alert-info") %>
-        		<% end %>
             <h1 class="title">Search all of the posts</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
@@ -44,6 +41,10 @@
       </div>
     </div>
 </div>
+
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+<% end %>
 
 <div class="features-5">
   <div class="container">
@@ -97,6 +98,7 @@
       <div class="col-md-7">
         <div class="tablet-container">
           <div class="container-fluid">
+            <h3 style="text-align:center">Posts</h3>
             <div class="card">
               <div class="card-content" style="text-align:center">
                   <div class="table-responsive">
@@ -118,6 +120,13 @@
                             <% end %>
                           </tbody>
                       </table>
+                  </div>
+                  <div class="row">
+                    <div class="col mr-auto ml-auto">
+                      <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                        <%= link_to 'More Posts', posts_path, class:"btn btn-primary" %>
+                      </div>
+                    </div>
                   </div>
               </div>
             </div>
