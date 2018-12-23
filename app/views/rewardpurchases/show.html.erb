@@ -13,17 +13,53 @@
   </script>
 </head>
 
-<p>
-  <strong>Title:</strong>
-  <%= @rewardpurchase.rewardname %>
-</p>
+<% @title= @rewardpurchase.rewardname %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @rewardpurchase.reward.business.code%>
-</p>
+<body class="blog-post">
+  <div class="wrapper">
+    <div class="page-header header-filter page-header-mini" filter-color="black">
+        <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+        </div>
+        <div class="content-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title"><%= @rewardpurchase.rewardname %></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% flash.each do |name, msg| %>
+      	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <% flash.each do |name, msg| %>
+            			<%= content_tag(:div, msg, class: "alert alert-info") %>
+            		<% end %>
+                <h3 class="title"><%= @rewardpurchase.reward.name %> at <%= @rewardpurchase.reward.business.name %></h3>
+                <div id="pete" style="display:none;" ><%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round btn-lg' %></div>
+                <p>Business Code: <input type="text" id="fname"></p>
+            		<div class="card">
+            		  <div class="card-content">
+            		    <div class="container">
+            		      <br>
+                      <p>Bring this screen to the store and show it to the cashier.</p>
+                      <p>The business will input their specific code to prove that the reward is valid.</p>
+            		    </div>
+            		  </div>
+            		</div>
+                <p><strong>Reward description: </strong><%= simple_format @rewardpurchase.reward.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<p>Name: <input type="text" id="fname"></p>
-<div id="pete" style="display:none;" ><%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round' %></div>
+</body>
+
+
+<%= render "layouts/footer"%>
+
 
   

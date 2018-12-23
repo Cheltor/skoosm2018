@@ -66,7 +66,7 @@ class RewardsController < ApplicationController
   def destroy
     @reward.destroy
     respond_to do |format|
-      format.html { redirect_to rewards_url, notice: 'Reward was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Reward was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -85,7 +85,7 @@ class RewardsController < ApplicationController
       respond_to do |format|
         if @rewardpurchase.save
           current_user.purchase_reward(@reward.cost)
-          format.html { redirect_to @reward, notice: 'Purchase was successfully created.' }
+          format.html { redirect_to root_path, notice: 'Reward was successfully purchased.' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
         else
           format.html { redirect_to @reward}
@@ -111,6 +111,6 @@ class RewardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_params
-      params.require(:reward).permit(:name, :cost, :description)
+      params.require(:reward).permit(:name, :cost, :description, :expdate)
     end
 end

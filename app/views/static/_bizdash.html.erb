@@ -10,6 +10,9 @@
     </div>
   </div>
 </div>
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+<% end %>
 
   
   <div class="container">
@@ -58,6 +61,13 @@
                 <% end %>
               </h4>
             </div> 
+            </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'Change Details', edit_business_registration_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
             </div>
           </div>
         </div>

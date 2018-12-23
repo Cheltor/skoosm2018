@@ -28,6 +28,19 @@
   <div class="form-group">
     <%= f.text_area :description, autocomplete: "off", class: 'form-control', placeholder:"Reward Desciption" %>
   </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <p>
+        Expiration Date:
+      </p>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= f.date_select :expdate, autocomplete: "off", class: 'form-control' %>
+      </div>
+    </div>
+  </div>
   <div class="actions form-group">
     <%= f.submit "Submit", class: 'btn btn-primary btn-round btn-lg' %>
   </div>

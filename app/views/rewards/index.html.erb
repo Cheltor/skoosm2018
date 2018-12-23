@@ -31,8 +31,10 @@
         </div>
       </div>
     </div>
+    <% if user_signed_in? %>
     <br>
     <h3 style="text-align:center">You currently have <%= pluralize(current_user.try(:karma), 'point') %>.</h3>
+    <% end %>
   <% if @rewards.blank? %>
   <% else %>
   <br>
