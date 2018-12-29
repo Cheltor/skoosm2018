@@ -1,35 +1,32 @@
 <% @title="Posts" %>
 
 <div class="contatiner" style="padding-top:30px">
-    <div class="page-header page-header-small header-filter" filter-color="black">
-      <div class="page-header-image" data-parallax="false" style="background-image: url(&quot;../assets/img/bg3.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
-      </div>
-      <div class="content-center">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
-            <% flash.each do |name, msg| %>
-        			<%= content_tag(:div, msg, class: "alert alert-info") %>
-        		<% end %>
-            <h1 class="title">Search the Posts</h1>
-            <div class="card card-raised card-form-horizontal card-plain">
-              <div class="card-body">
-              <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-            		<div class="row">
-            			<div class="col-md-9">
-            				<div class="form-group">
-      		        	   <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Keywords', class:"form-control" %>
-                    </div>
+    <div class="header-2">
+        <div class="page-header header-filter page-header-mini">
+          <div class="page-header-image" style="background-image: url('assets/img/bg3.jpg');"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 ml-auto mr-auto">
+                <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                  <div class="card-body">
+                    <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+                      <div class="row">
+                        <div class="col-md-9">
+                          <div class="form-group">
+      		        	   <%= f.text_field :title_or_content_or_comments_content_cont, placeholder: 'Search all of the posts', class:"form-control" %>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+         				          <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
-            			<div class="col-md-3">
-      						  <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-            			</div>
-            		</div>
-              <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   <% if @posts.blank? %>
   <% else %>

@@ -133,7 +133,7 @@
                 <h3 style="text-align:center">You currently have <%= current_user.try(:karma) %> points.</h3>
                 <% if @myrewards.blank? %>
                 <br>
-                  <h5 style="text-align:center">You haven't gotten any rewards yet.</h5>
+                <h5 style="text-align:center">You haven't gotten any rewards yet.</h5>
                   <% else %>
                     <table class="table">
                         <thead class="text-primary">
@@ -147,10 +147,10 @@
                         <tbody>
                           <% @myrewards.each do |reward| %>
                             <tr>
-                              <td><%= reward.reward.business.name %></td>
-                              <td><strong><%= link_to reward.reward.name, reward %></strong></td>
-                              <td><%= reward.reward.cost %> Points</td>
-                              <td><%= truncate(reward.reward.description, :length => 50) %></td>
+                              <td><%= reward.rewardbusiness %></td>
+                              <td><strong><%= link_to reward.rewardname, reward %></strong></td>
+                              <td><%= reward.rewardcost %> Points</td>
+                              <td><%= truncate(reward.rewarddescription, :length => 50) %></td>
                             </tr>
                           <% end %>
                         </tbody>
@@ -193,12 +193,12 @@
                           <%= link_to enroll.course.try(:name), course_path(enroll.course) %>
                             <p>
                               <%= pluralize(enroll.course.posts.count, 'post') %> and
-                                <%= pluralize(enroll.course.enrolls.count, 'user') %> enrolled
+                                <%= pluralize(enroll.course.enrolls.count, 'user') %> following
                             </p>
                         </h4>
                       </div>
                       <div>
-                        <%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-link btn-lg pull-right btn-lg' %>
+                        <%= link_to 'UnFollow', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-link btn-lg pull-right btn-lg' %>
                           <h5 class="pull-left">Recent Posts</h5>
                       </div>
                     </div>

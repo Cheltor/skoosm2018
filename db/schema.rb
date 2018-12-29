@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181223032208) do
+ActiveRecord::Schema.define(version: 20181229015757) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -121,8 +121,9 @@ ActiveRecord::Schema.define(version: 20181223032208) do
     t.string   "rewardname"
     t.string   "rewardbusiness"
     t.integer  "rewardcost"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "Rewarddescription"
     t.index ["reward_id"], name: "index_rewardpurchases_on_reward_id"
     t.index ["user_id"], name: "index_rewardpurchases_on_user_id"
   end

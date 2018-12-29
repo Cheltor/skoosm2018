@@ -4,13 +4,15 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @search = Course.ransack(params[:q])
+    @courses = @search.result(distinct: true).paginate(page: params[:page], per_page: 15)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @posts = Post.all.where(course_id: @course.id).where.not(id: Flag.select(:post_id))
+    @search = Post.ransack(params[:q])
+    @posts = @search.result.includes(:comments).where(course_id: @course.id).where.not(id: Flag.select(:post_id)).order("created_at DESC").paginate(page: params[:page], per_page: 10)
 
     if user_signed_in?
       @enrolls = Enroll.all.where(user_id: current_user.id).where(course_id: @course.id)

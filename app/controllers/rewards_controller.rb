@@ -80,6 +80,8 @@ class RewardsController < ApplicationController
     @rewardpurchase.rewardbusiness = @reward.business.name.dup
     @rewardpurchase.rewardcost = @reward.cost.to_s.dup
     @rewardpurchase.user_id = current_user.id
+    @rewardpurchase.rewarddescription = @reward.description
+    
     
     if current_user.karma >= @reward.cost
       respond_to do |format|
